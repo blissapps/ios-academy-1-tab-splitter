@@ -7,12 +7,17 @@
 
 import Foundation
 
-struct BillItem {}
+struct BillItem {
+    let name: String
+    let value: Double
+}
 
 protocol Coordinator {
     var selectedBillItem: BillItem? { get set }
     var billItems: [BillItem]? { get set }
     func delete()
     func uptade(int: Int)
+    func setBill(bill: Double)
+    func addPerson(name: String, value: Double)
 }
 

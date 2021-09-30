@@ -16,6 +16,7 @@ class SecondViewController: UIViewController {
     @IBOutlet weak var valueTextField: UITextField!
     
     @IBOutlet weak var adicionarOuSalvar: UIButton!
+    
     @IBAction func adicionarOuSalvarAction(_ sender: Any) {
         
     }
@@ -25,6 +26,8 @@ class SecondViewController: UIViewController {
         // Do any additional setup after loading the view.
         nameTextField.delegate = self
         valueTextField.delegate = self
+        
+        self.dismissKeyboard()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -51,22 +54,29 @@ class SecondViewController: UIViewController {
 
 extension SecondViewController: UITextFieldDelegate {
     @IBAction func searchPressed(_ sender: Any) {
-        //coordinator.finishedEditing(name, value)
+        if let bill = Double(valueTextField.text ?? "0") {
+            view.endEditing(true)
+            valueTextField.text = String(bill)
+        }
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        return true 
+        return true
     }
     
     func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
-        if textField.text != "" {
+        if valueTextField.text != "" {
             return true
         } else {
-            textField.placeholder = "Type something"
+            valueTextField.placeholder = "Insert the bill"
             return false
         }
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
+        if let bill = Double(valueTextField.text ?? "0"){
+            view.endEditing(true)
+            valueTextField.text = String(bill)
+        }
     }
 }

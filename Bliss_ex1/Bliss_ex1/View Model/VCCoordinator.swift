@@ -9,10 +9,13 @@ import Foundation
 import UIKit
 
 class VCCoordinator: Coordinator {
+    
     let blissModel = BlissModel()
     var vc : ViewController?
     var svc : SecondViewController?
-
+    var bill: Double?
+    var rest: Double?
+    
     var selectedBillItem: BillItem?
     var billItems: [BillItem]?
 
@@ -24,10 +27,10 @@ class VCCoordinator: Coordinator {
     
     func delete() {
         vc?.users?.removeAll()
-        vc?.rest = 0
-        vc?.total = 0
-        vc?.restLabel.text = vc?.rest?.displayText
-        vc?.totalLabel.text = vc?.total?.displayText
+        self.rest = 0
+        self.bill = 0
+        vc?.restLabel.text = "0€"
+        vc?.totalLabel.text = "0€"
         vc?.tableView.reloadData()
     }
     
@@ -36,6 +39,15 @@ class VCCoordinator: Coordinator {
         vc?.navigationController?.pushViewController(svc!, animated: true)
         svc?.changeTitleButton(int: int)
         svc?.coordinator = self
+    }
+    
+    func setBill(bill: Double) {
+        self.bill = bill
+    }
+    
+    func addPerson(name: String, value: Double) {
+        let personAndBill = BillItem(name: name, value: value)
+        billItems?.append(personAndBill)
     }
 }
 
@@ -48,5 +60,12 @@ extension Optional where Wrapped == Double {
 extension Double {
     var displayText: String {
         return String(format: "%f", self)
+    }
+}
+
+extension Double {
+    func roundToPlaces(places:Int) -> Double {
+        let divisor = pow(10.0, Double(places))
+        return (self * divisor).rounded() / divisor
     }
 }
