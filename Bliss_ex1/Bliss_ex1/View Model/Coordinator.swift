@@ -7,7 +7,11 @@
 
 import Foundation
 
+struct BillItem {}
+
 protocol Coordinator {
+    var selectedBillItem: BillItem? { get set }
+    var billItems: [BillItem]? { get set }
     func delete()
     func uptade(int: Int)
 }

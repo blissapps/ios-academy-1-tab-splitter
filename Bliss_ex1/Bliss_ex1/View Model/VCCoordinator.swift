@@ -8,13 +8,19 @@
 import Foundation
 import UIKit
 
-
-
-class VCCoordinator {
+class VCCoordinator: Coordinator {
     let blissModel = BlissModel()
     var vc : ViewController?
     var svc : SecondViewController?
-    
+
+    var selectedBillItem: BillItem?
+    var billItems: [BillItem]?
+
+    init(vc: ViewController?) {
+        self.vc = vc
+        vc?.coordinator = self
+        billItems = []
+    }
     
     func delete() {
         vc?.users?.removeAll()
@@ -29,6 +35,7 @@ class VCCoordinator {
         svc = vc?.storyboard?.instantiateViewController(withIdentifier: "SecondViewController") as? SecondViewController
         vc?.navigationController?.pushViewController(svc!, animated: true)
         svc?.changeTitleButton(int: int)
+        svc?.coordinator = self
     }
 }
 

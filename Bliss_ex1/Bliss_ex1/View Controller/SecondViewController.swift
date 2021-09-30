@@ -8,7 +8,9 @@
 import UIKit
 
 class SecondViewController: UIViewController {
-    
+
+    var coordinator: Coordinator?
+
     @IBAction func back(_ sender: Any) {}
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var valueTextField: UITextField!
@@ -25,6 +27,16 @@ class SecondViewController: UIViewController {
         valueTextField.delegate = self
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        guard let billItem = coordinator?.selectedBillItem else {
+            changeTitleButton(int: 0)
+            return
+        }
+        changeTitleButton(int: 1)
+        //nameTextField.text = billItem.name
+    }
+
     func changeTitleButton(int: Int) {
         _ = view
         if(int == 0) {
@@ -39,6 +51,7 @@ class SecondViewController: UIViewController {
 
 extension SecondViewController: UITextFieldDelegate {
     @IBAction func searchPressed(_ sender: Any) {
+        //coordinator.finishedEditing(name, value)
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
