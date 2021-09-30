@@ -14,7 +14,9 @@ class SecondViewController: UIViewController {
     @IBOutlet weak var valueTextField: UITextField!
     
     @IBOutlet weak var adicionarOuSalvar: UIButton!
-    @IBAction func adicionarOuSalvarAction(_ sender: Any) {}
+    @IBAction func adicionarOuSalvarAction(_ sender: Any) {
+        
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,7 +25,14 @@ class SecondViewController: UIViewController {
         valueTextField.delegate = self
     }
 
-
+    func changeTitleButton(int: Int) {
+        _ = view
+        if(int == 0) {
+            adicionarOuSalvar.setTitle("Adicionar", for: .normal)
+        } else {
+            adicionarOuSalvar.setTitle("Salvar", for: .normal)
+        }
+    }
 }
 
 //MARK: - UITextFieldDelegate

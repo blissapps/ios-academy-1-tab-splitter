@@ -73,6 +73,9 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <state key="normal" title="Restart"/>
+                                <connections>
+                                    <action selector="restartButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="WP2-iU-8Xf"/>
+                                </connections>
                             </button>
                             <connections>
                                 <action selector="restartButton:" destination="BYZ-38-t0r" id="NMB-Dw-g4F"/>
@@ -80,9 +83,9 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="restLabel" destination="wyg-aC-AjO" id="cf8-q7-51J"/>
+                        <outlet property="restLabel" destination="wyg-aC-AjO" id="0Ex-SX-wA0"/>
                         <outlet property="tableView" destination="3PD-CM-l6Y" id="6UT-Na-eAb"/>
-                        <outlet property="totalLabel" destination="uPB-W4-EdI" id="Jey-E9-kKt"/>
+                        <outlet property="totalLabel" destination="uPB-W4-EdI" id="H5t-2K-Axp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -108,7 +111,7 @@
         <!--Second View Controller-->
         <scene sceneID="O4B-Eb-xR6">
             <objects>
-                <viewController id="jn3-kM-eB4" customClass="SecondViewController" customModule="Bliss_ex1" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SecondViewController" id="jn3-kM-eB4" customClass="SecondViewController" customModule="Bliss_ex1" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="sdf-vG-kfM">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -117,16 +120,16 @@
                                 <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
-                                    <navigationItem title="Adicionar Pessoa" id="S8s-Cd-P41">
-                                        <barButtonItem key="leftBarButtonItem" image="po" style="plain" id="9hC-D0-YfK">
-                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="GCI-ZG-2ZT">
+                                    <navigationItem title="Adicionar Pessoa" id="SD8-lY-uJx">
+                                        <barButtonItem key="leftBarButtonItem" image="po" style="plain" id="kOt-Ki-bDq">
+                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="RDG-bS-COP">
                                                 <rect key="frame" x="20" y="0.0" width="101.5" height="44"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="66"/>
                                                 <state key="normal" image="lessthan" catalog="system"/>
                                             </button>
                                             <connections>
-                                                <action selector="back:" destination="jn3-kM-eB4" id="cWW-bt-Z9I"/>
+                                                <action selector="back:" destination="jn3-kM-eB4" id="BCw-a6-psM"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
@@ -158,14 +161,14 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <connections>
-                        <outlet property="adicionarOuSalvar" destination="OCC-lc-tpU" id="6WK-5g-5Yf"/>
+                        <outlet property="adicionarOuSalvar" destination="OCC-lc-tpU" id="5Tb-Gh-07A"/>
                         <outlet property="nameTextField" destination="75t-bk-JbN" id="xZO-hA-V42"/>
                         <outlet property="valueTextField" destination="mq3-cZ-cga" id="koV-i1-dkl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="klJ-WS-RGE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="928.98550724637687" y="785.49107142857144"/>
+            <point key="canvasLocation" x="942" y="854"/>
         </scene>
     </scenes>
     <resources>
