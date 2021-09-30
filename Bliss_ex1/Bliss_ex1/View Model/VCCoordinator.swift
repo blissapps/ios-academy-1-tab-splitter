@@ -15,9 +15,11 @@ class VCCoordinator: Coordinator {
     var svc : SecondViewController?
     var bill: Double?
     var rest: Double?
+    var index:IndexPath?
     
     var selectedBillItem: BillItem?
     var billItems: [BillItem]?
+    var editBill: [BillItem]?
 
     init(vc: ViewController?) {
         self.vc = vc
@@ -29,6 +31,7 @@ class VCCoordinator: Coordinator {
         vc?.users?.removeAll()
         self.rest = 0
         self.bill = 0
+        self.index = nil
         vc?.restLabel.text = "0€"
         vc?.totalLabel.text = "0€"
         vc?.tableView.reloadData()
@@ -44,10 +47,29 @@ class VCCoordinator: Coordinator {
     func setBill(bill: Double) {
         self.bill = bill
     }
-    
+     
     func addPerson(name: String, value: Double) {
-        let personAndBill = BillItem(name: name, value: value)
-        billItems?.append(personAndBill)
+        if index != nil {
+            let person = BillItem(name: name, value: value)
+            //billItems.insert(person, at: Int(index))
+        } else {
+            index = nil
+            if name != nil {
+                
+            }
+        }
+    }
+    
+    func getValue(value: Double) -> Int {
+        if bill - editBill.
+        if (value == 0) {
+            return
+        }
+        return 2
+    }
+    
+    func setIndex(index: IndexPath) {
+        self.index = index
     }
 }
 
@@ -69,3 +91,4 @@ extension Double {
         return (self * divisor).rounded() / divisor
     }
 }
+

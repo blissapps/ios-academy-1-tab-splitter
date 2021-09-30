@@ -19,5 +19,8 @@ protocol Coordinator {
     func uptade(int: Int)
     func setBill(bill: Double)
     func addPerson(name: String, value: Double)
+    func setIndex(index: IndexPath)
+    
 }
+
 

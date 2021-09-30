@@ -8,7 +8,7 @@
 import UIKit
 
 class ViewController: UIViewController {
-    var users: [(String, Double)]?
+    var users: [BillItem]?
     var bill: Double?
     var coordinator: Coordinator?
     
@@ -41,6 +41,9 @@ class ViewController: UIViewController {
 extension ViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("Row selected")
+        if let index = tableView.indexPathsForSelectedRows?.first?.dropFirst() {
+            coordinator?.setIndex(index: index)
+        }
         coordinator?.uptade(int: 1)
     }
 }
@@ -48,13 +51,15 @@ extension ViewController: UITableViewDelegate {
 extension ViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return coordinator?.billItems?.count ?? 0
+        return 20
+        //return coordinator?.billItems?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel?.text = users?[indexPath.row].0
-        //falta fazer algoritmo para o restlabel
+        cell.textLabel?.text = users?[indexPath.row].name
+
+ //       String(users?[indexPath.row].value ?? 0)
         return cell
     }
     
@@ -105,3 +110,6 @@ func dismissKeyboard() {
        view.endEditing(true)
     }
 }
+
+
+

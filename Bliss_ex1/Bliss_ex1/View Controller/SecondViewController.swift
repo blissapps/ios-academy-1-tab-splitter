@@ -10,7 +10,10 @@ import UIKit
 class SecondViewController: UIViewController {
 
     var coordinator: Coordinator?
-
+    
+    var name: String?
+    var value: Double?
+    
     @IBAction func back(_ sender: Any) {}
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var valueTextField: UITextField!
@@ -18,7 +21,7 @@ class SecondViewController: UIViewController {
     @IBOutlet weak var adicionarOuSalvar: UIButton!
     
     @IBAction func adicionarOuSalvarAction(_ sender: Any) {
-        
+        coordinator?.addPerson(name: name ?? "", value: value ?? 0)
     }
     
     override func viewDidLoad() {
@@ -29,7 +32,7 @@ class SecondViewController: UIViewController {
         
         self.dismissKeyboard()
     }
-
+/*
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         guard let billItem = coordinator?.selectedBillItem else {
@@ -39,7 +42,7 @@ class SecondViewController: UIViewController {
         changeTitleButton(int: 1)
         //nameTextField.text = billItem.name
     }
-
+*/
     func changeTitleButton(int: Int) {
         _ = view
         if(int == 0) {
@@ -54,9 +57,13 @@ class SecondViewController: UIViewController {
 
 extension SecondViewController: UITextFieldDelegate {
     @IBAction func searchPressed(_ sender: Any) {
-        if let bill = Double(valueTextField.text ?? "0") {
+        if let value = Double(valueTextField.text ?? "0") {
             view.endEditing(true)
-            valueTextField.text = String(bill)
+            valueTextField.text = String(value)
+        }
+        if let name = Double(nameTextField.text ?? "0") {
+            view.endEditing(true)
+            nameTextField.text = String(name)
         }
     }
     
@@ -69,14 +76,19 @@ extension SecondViewController: UITextFieldDelegate {
             return true
         } else {
             valueTextField.placeholder = "Insert the bill"
+            nameTextField.placeholder = "Insert the name"
             return false
         }
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-        if let bill = Double(valueTextField.text ?? "0"){
+        if let value = Double(valueTextField.text ?? "0"){
             view.endEditing(true)
-            valueTextField.text = String(bill)
+            valueTextField.text = String(value)
+        }
+        if let name = Double(nameTextField.text ?? "0") {
+            view.endEditing(true)
+            nameTextField.text = String(name)
         }
     }
 }
