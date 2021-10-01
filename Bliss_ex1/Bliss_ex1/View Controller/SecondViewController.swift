@@ -9,20 +9,11 @@ import UIKit
 
 class SecondViewController: UIViewController {
 
-    var coordinator: Coordinator?
+    var coordinator: CoordinatorProtocol?
     
-    var name: String?
-    var value: Double?
-    
-    @IBAction func back(_ sender: Any) {}
-    @IBOutlet weak var nameTextField: UITextField!
-    @IBOutlet weak var valueTextField: UITextField!
-    
-    @IBOutlet weak var adicionarOuSalvar: UIButton!
-    
-    @IBAction func adicionarOuSalvarAction(_ sender: Any) {
-        coordinator?.addPerson(name: name ?? "", value: value ?? 0)
-    }
+    @IBOutlet weak private var nameTextField: UITextField!
+    @IBOutlet weak private var valueTextField: UITextField!
+    @IBOutlet weak private var adicionarOuSalvar: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,65 +21,51 @@ class SecondViewController: UIViewController {
         nameTextField.delegate = self
         valueTextField.delegate = self
         
-        self.dismissKeyboard()
+        dismissKeyboard()
     }
-/*
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        guard let billItem = coordinator?.selectedBillItem else {
-            changeTitleButton(int: 0)
-            return
-        }
-        changeTitleButton(int: 1)
-        //nameTextField.text = billItem.name
-    }
-*/
+    
     func changeTitleButton(int: Int) {
-        _ = view
-        if(int == 0) {
+        if coordinator?.selectedOption == .add {
             adicionarOuSalvar.setTitle("Adicionar", for: .normal)
         } else {
             adicionarOuSalvar.setTitle("Salvar", for: .normal)
         }
+    }
+    
+    @IBAction func back(_ sender: Any) {}
+    
+    @IBAction func didTapButton(_ sender: Any) {
+        let value = Double(valueTextField.text?.replacingOccurrences(of: ",", with: ".") ?? "0") ?? 0
+        let name = nameTextField.text ?? ""
+        
+        if coordinator?.selectedOption == .add {
+            coordinator?.saveUser(BillItem(name: name, value: value))
+        } else {
+            guard let selectedUser = coordinator?.selectedUser else { return }
+            var user = selectedUser
+            user.name = name
+            user.value = value
+            coordinator?.saveUser(user)
+        }
+        
+        navigationController?.popViewController(animated: true)
     }
 }
 
 //MARK: - UITextFieldDelegate
 
 extension SecondViewController: UITextFieldDelegate {
-    @IBAction func searchPressed(_ sender: Any) {
-        if let value = Double(valueTextField.text ?? "0") {
-            view.endEditing(true)
-            valueTextField.text = String(value)
-        }
-        if let name = Double(nameTextField.text ?? "0") {
-            view.endEditing(true)
-            nameTextField.text = String(name)
-        }
-    }
-    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         return true
     }
     
     func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
-        if valueTextField.text != "" {
+        if textField.text?.isEmpty == false {
             return true
         } else {
             valueTextField.placeholder = "Insert the bill"
             nameTextField.placeholder = "Insert the name"
             return false
-        }
-    }
-    
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        if let value = Double(valueTextField.text ?? "0"){
-            view.endEditing(true)
-            valueTextField.text = String(value)
-        }
-        if let name = Double(nameTextField.text ?? "0") {
-            view.endEditing(true)
-            nameTextField.text = String(name)
         }
     }
 }

@@ -8,58 +8,70 @@
 import UIKit
 
 class ViewController: UIViewController {
-    var users: [BillItem]?
-    var bill: Double?
-    var coordinator: Coordinator?
+    var coordinator: CoordinatorProtocol?
     
-    @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var restLabel: UILabel!
-    @IBOutlet weak var totalLabel: UITextField!
+    @IBOutlet weak private var tableView: UITableView!
+    @IBOutlet weak private var restLabel: UILabel!
+    @IBOutlet weak private var totalTextField: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         tableView.delegate = self
         tableView.dataSource = self
-        totalLabel.delegate = self
+        totalTextField.delegate = self
         
         self.dismissKeyboard()
     }
     
     @IBAction func restartButton(_ sender: Any) {
-        coordinator?.delete()
+        coordinator?.reset()
     }
     
     @IBAction func addButton(_ sender: Any) {
-        coordinator?.uptade(int: 0)
+        coordinator?.add()
     }
 }
 
+extension ViewController: CoordinatorDelegate {
+    func reloadData() {
+        tableView.reloadData()
+    }
+    
+    func updateRest(with text: String) {
+        restLabel.text = text
+    }
+    
+    func updateTotal(with text: String) {
+        totalTextField.text = text
+    }
+    
+    func next() {
+        if let vc = storyboard?.instantiateViewController(withIdentifier: "SecondViewController") as? SecondViewController {
+            navigationController?.pushViewController(vc, animated: true)
+            vc.coordinator = coordinator
+        }
+    }
+}
 
 //MARK: - TableView
 
 extension ViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("Row selected")
-        if let index = tableView.indexPathsForSelectedRows?.first?.dropFirst() {
-            coordinator?.setIndex(index: index)
-        }
-        coordinator?.uptade(int: 1)
+        coordinator?.selectUser(at: indexPath.row)
     }
 }
 
 extension ViewController: UITableViewDataSource {
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 20
-        //return coordinator?.billItems?.count ?? 0
+        return coordinator?.users.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel?.text = users?[indexPath.row].name
-
- //       String(users?[indexPath.row].value ?? 0)
+        let user = coordinator?.users[indexPath.row]
+        cell.textLabel?.text = user?.name
+        cell.detailTextLabel?.text = "\(String(user?.value?.roundToPlaces(places: 2) ?? 0))€"
         return cell
     }
     
@@ -68,32 +80,30 @@ extension ViewController: UITableViewDataSource {
 //MARK: - UITextFieldDelegate
 
 extension ViewController: UITextFieldDelegate {
-    @IBAction func searchPressed(_ sender: Any) {
-        if let bill = Double(totalLabel.text ?? "0") {
-            view.endEditing(true)
-            totalLabel.text = String(bill) + "€"
-            coordinator?.setBill(bill: self.bill ?? 0)
-        }
-    }
-    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         return true
     }
     
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        textField.text?.removeAll(where: { $0 == "€" })
+    }
+    
     func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
-        if totalLabel.text != "" {
+        if totalTextField.text?.isEmpty == false {
             return true
-        } else {
-            totalLabel.placeholder = "Insert the bill"
-            return false
         }
+        
+        totalTextField.placeholder = "Insert the bill"
+        return false
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-        if let bill = Double(totalLabel.text ?? "0"){
+        if let text = textField.text?.replacingOccurrences(of: ",", with: "."),
+           let billAmount = Double(text) {
+            let formattedText = String(billAmount.roundToPlaces(places: 2)).replacingOccurrences(of: ".", with: Locale.current.decimalSeparator ?? ",")
             view.endEditing(true)
-            totalLabel.text = String(bill) + "€"
-            coordinator?.setBill(bill: self.bill ?? 0)
+            totalTextField.text = "\(formattedText)€"
+            coordinator?.billAmountDidChange(billAmount)
         }
     }
 }

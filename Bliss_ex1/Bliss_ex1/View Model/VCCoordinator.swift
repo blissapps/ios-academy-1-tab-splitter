@@ -8,87 +8,71 @@
 import Foundation
 import UIKit
 
-class VCCoordinator: Coordinator {
+final class VCCoordinator: CoordinatorProtocol {
+    weak var delegate: CoordinatorDelegate?
     
-    let blissModel = BlissModel()
-    var vc : ViewController?
-    var svc : SecondViewController?
-    var bill: Double?
-    var rest: Double?
-    var index:IndexPath?
+    var billAmount: Double = 0
+    var restAmount: Double = 0
     
-    var selectedBillItem: BillItem?
-    var billItems: [BillItem]?
-    var editBill: [BillItem]?
-
-    init(vc: ViewController?) {
-        self.vc = vc
-        vc?.coordinator = self
-        billItems = []
+    var selectedUser: BillItem?
+    var users: [BillItem] = []
+    
+    private var changedUsers: [BillItem] = []
+    
+    var selectedOption: OperationOption?
+    
+    func selectUser(at index: Int) {
+        selectedUser = users[index]
+        selectedOption = .save
+        delegate?.next()
     }
     
-    func delete() {
-        vc?.users?.removeAll()
-        self.rest = 0
-        self.bill = 0
-        self.index = nil
-        vc?.restLabel.text = "0€"
-        vc?.totalLabel.text = "0€"
-        vc?.tableView.reloadData()
-    }
-    
-    func uptade(int: Int) {
-        svc = vc?.storyboard?.instantiateViewController(withIdentifier: "SecondViewController") as? SecondViewController
-        vc?.navigationController?.pushViewController(svc!, animated: true)
-        svc?.changeTitleButton(int: int)
-        svc?.coordinator = self
+    func reset() {
+        users = []
+        restAmount = 0
+        billAmount = 0
+        selectedUser = nil
+        selectedOption = nil
+        
+        delegate?.updateRest(with: "\(restAmount)€")
+        delegate?.updateTotal(with: "\(billAmount)€")
+        delegate?.reloadData()
     }
     
     func setBill(bill: Double) {
-        self.bill = bill
+        self.billAmount = bill
+    }
+    
+    func add() {
+        selectedOption = .add
+        delegate?.next()
     }
      
-    func addPerson(name: String, value: Double) {
-        if index != nil {
-            let person = BillItem(name: name, value: value)
-            //billItems.insert(person, at: Int(index))
+    func saveUser(_ user: BillItem) {
+        if selectedOption == .add {
+            users.append(user)
         } else {
-            index = nil
-            if name != nil {
+            if let index = users.firstIndex(where: { $0 == user }) {
+                users[index] = user
                 
+                if let index = changedUsers.firstIndex(where: { $0 == user }) {
+                    changedUsers[index] = user
+                } else {
+                    changedUsers.append(user)
+                }
             }
         }
+        
+        print("Todo - calculate amounts and users")
+        
+        
+        delegate?.reloadData()
+        
+        selectedUser = nil
+        selectedOption = nil
     }
     
-    func getValue(value: Double) -> Int {
-        if bill - editBill.
-        if (value == 0) {
-            return
-        }
-        return 2
-    }
-    
-    func setIndex(index: IndexPath) {
-        self.index = index
+    func billAmountDidChange(_ value: Double) {
+        billAmount = value
     }
 }
-
-extension Optional where Wrapped == Double {
-    var displayText: String {
-        (self ?? 0).displayText
-    }
-}
-
-extension Double {
-    var displayText: String {
-        return String(format: "%f", self)
-    }
-}
-
-extension Double {
-    func roundToPlaces(places:Int) -> Double {
-        let divisor = pow(10.0, Double(places))
-        return (self * divisor).rounded() / divisor
-    }
-}
-
