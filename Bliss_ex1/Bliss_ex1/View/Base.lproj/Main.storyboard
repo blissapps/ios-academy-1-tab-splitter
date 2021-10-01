@@ -167,8 +167,8 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <connections>
-                        <outlet property="adicionarOuSalvar" destination="OCC-lc-tpU" id="5Tb-Gh-07A"/>
                         <outlet property="nameTextField" destination="75t-bk-JbN" id="xZO-hA-V42"/>
+                        <outlet property="saveOrAdd" destination="OCC-lc-tpU" id="5Tb-Gh-07A"/>
                         <outlet property="valueTextField" destination="mq3-cZ-cga" id="koV-i1-dkl"/>
                     </connections>
                 </viewController>

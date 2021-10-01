@@ -24,7 +24,8 @@ class SecondViewController: UIViewController {
         dismissKeyboard()
     }
     
-    func changeTitleButton(int: Int) {
+    func changeTitleButton() {
+        _ = view
         if coordinator?.selectedOption == .add {
             adicionarOuSalvar.setTitle("Adicionar", for: .normal)
         } else {
@@ -32,7 +33,9 @@ class SecondViewController: UIViewController {
         }
     }
     
-    @IBAction func back(_ sender: Any) {}
+    @IBAction func back(_ sender: Any) {
+        coordinator?.back()
+    }
     
     @IBAction func didTapButton(_ sender: Any) {
         let value = Double(valueTextField.text?.replacingOccurrences(of: ",", with: ".") ?? "0") ?? 0

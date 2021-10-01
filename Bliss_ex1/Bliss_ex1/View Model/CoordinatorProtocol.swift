@@ -29,6 +29,7 @@ protocol CoordinatorProtocol {
     func selectUser(at index: Int)
     func saveUser(_ user: BillItem)
     func add()
+    func back()
     func reset()
 }
 

@@ -50,6 +50,7 @@ extension ViewController: CoordinatorDelegate {
         if let vc = storyboard?.instantiateViewController(withIdentifier: "SecondViewController") as? SecondViewController {
             navigationController?.pushViewController(vc, animated: true)
             vc.coordinator = coordinator
+            vc.changeTitleButton()
         }
     }
 }

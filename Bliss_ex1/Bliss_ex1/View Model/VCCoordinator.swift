@@ -13,7 +13,7 @@ final class VCCoordinator: CoordinatorProtocol {
     
     var billAmount: Double = 0
     var restAmount: Double = 0
-    
+
     var selectedUser: BillItem?
     var users: [BillItem] = []
     
@@ -47,24 +47,48 @@ final class VCCoordinator: CoordinatorProtocol {
         selectedOption = .add
         delegate?.next()
     }
+    
+    func back() {
+        selectedUser = nil
+        selectedOption = nil
+    }
      
     func saveUser(_ user: BillItem) {
+        var valueAmount: Double = 0
+
         if selectedOption == .add {
             users.append(user)
         } else {
-            if let index = users.firstIndex(where: { $0 == user }) {
+            if let index = users.firstIndex(where: { $0.id == user.id }) {
                 users[index] = user
                 
-                if let index = changedUsers.firstIndex(where: { $0 == user }) {
+                if let index = changedUsers.firstIndex(where: { $0.id == user.id }) {
                     changedUsers[index] = user
                 } else {
                     changedUsers.append(user)
                 }
             }
         }
+ 
+        var changedValue: Double = 0
         
-        print("Todo - calculate amounts and users")
+        changedUsers.forEach { changedValue += ($0.value ?? 0) }
+        print("changed value = \(changedValue)")
         
+        let numberOfUnchangedUser = Double(users.count - changedUsers.count)
+        
+        if numberOfUnchangedUser != 0.0 && !changedUsers.isEmpty {
+            valueAmount =
+                (billAmount - changedValue) / numberOfUnchangedUser
+            
+            let changedIds = changedUsers.map { $0.id }
+
+            for (index, user) in users.enumerated() {
+                if !changedIds.contains(user.id) {
+                    users[index].value = valueAmount
+                }
+            }
+        }
         
         delegate?.reloadData()
         
