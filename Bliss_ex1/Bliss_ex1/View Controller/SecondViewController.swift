@@ -39,7 +39,7 @@ class SecondViewController: UIViewController {
     
     @IBAction func didTapButton(_ sender: Any) {
         var nilValue = false
-        
+        print("chega-mos aqui")
         if valueTextField.text == nil {
             nilValue = true
         }
@@ -59,7 +59,6 @@ class SecondViewController: UIViewController {
             user.changedUser = nilValue
             coordinator?.saveUser(user)
         }
-        
         navigationController?.popViewController(animated: true)
     }
 }

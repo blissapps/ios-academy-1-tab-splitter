@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 final class VCCoordinator: CoordinatorProtocol {
-    weak var billEngine: BillEngine?
+    var billEngine = BillSpliterEngine()
     
     var delegate: CoordinatorDelegate?
     var selectedUser: BillItem?
@@ -24,38 +24,44 @@ final class VCCoordinator: CoordinatorProtocol {
     }
     
     func reset() {
-        billEngine?.reset()
+        billEngine.reset()
+        selectedUser = nil
+        selectedOption = nil
         
-        delegate?.updateRest(with: "\(billEngine?.restAmount ?? 0)€")
-        delegate?.updateTotal(with: "\(billEngine?.billAmount ?? 0)€")
-       delegate?.reloadData()
+        delegate?.updateRest(with: "\(billEngine.restAmount)€")
+        delegate?.updateTotal(with: "\(billEngine.billAmount)€")
+        delegate?.reloadData()
     }
     
     func setBill(bill: Decimal) {
-        billEngine?.setBill(bill)
+        billEngine.setBill(bill)
     }
     
     func add() {
-        billEngine?.add()
+        selectedOption = .add
         delegate?.next()
     }
     
     func back() {
-        billEngine?.back()
+        selectedUser = nil
+        selectedOption = nil
         delegate?.next()
     }
      
     func saveUser(_ user: BillItem) {
-        billEngine?.saveUser(user)
+        billEngine.saveUser(user)
+        users = billEngine.users
         delegate?.reloadData()
+        selectedUser = nil
+        selectedOption = nil
     }
     
     func uptadeRest() {
-        billEngine?.uptadeRest()
-        delegate?.updateRest(with: "\((billEngine?.restAmount ?? 0).description)€")
+        billEngine.uptadeRest()
+        delegate?.updateRest(with: "\((billEngine.restAmount).description)€")
     }
     
     func billAmountDidChange(_ value: Decimal) {
-        billEngine?.billAmountDidChange(value)
+        billEngine.billAmountDidChange(value)
     }
 }

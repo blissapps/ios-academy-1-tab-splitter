@@ -7,37 +7,21 @@
 
 import Foundation
 
-class BillEngine {
+class BillSpliterEngine {
     
     var billAmount: Decimal = 0
     var restAmount: Decimal = 0
-
-    var selectedUser: BillItem?
     var users: [BillItem] = []
-    
     private var changedUsers: [BillItem] = []
-    
-    var selectedOption: OperationOption?
     
     func reset() {
         users = []
         restAmount = 0
         billAmount = 0
-        selectedUser = nil
-        selectedOption = nil
     }
     
     func setBill(_ bill: Decimal) {
         self.billAmount = bill
-    }
-    
-    func add() {
-        selectedOption = .add
-    }
-    
-    func back() {
-        selectedUser = nil
-        selectedOption = nil
     }
      
     func saveUser(_ user: BillItem) {
@@ -45,8 +29,6 @@ class BillEngine {
         addChangedUser(user)
         addValue()
         uptadeRest()
-        selectedUser = nil
-        selectedOption = nil
     }
     
     func addUser(_ user:BillItem) {
