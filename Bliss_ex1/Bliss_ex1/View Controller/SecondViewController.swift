@@ -13,7 +13,7 @@ class SecondViewController: UIViewController {
     
     @IBOutlet weak private var nameTextField: UITextField!
     @IBOutlet weak private var valueTextField: UITextField!
-    @IBOutlet weak private var adicionarOuSalvar: UIButton!
+    @IBOutlet weak private var saveOrAdd: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,9 +27,9 @@ class SecondViewController: UIViewController {
     func changeTitleButton() {
         _ = view
         if coordinator?.selectedOption == .add {
-            adicionarOuSalvar.setTitle("Adicionar", for: .normal)
+            saveOrAdd.setTitle("Adicionar", for: .normal)
         } else {
-            adicionarOuSalvar.setTitle("Salvar", for: .normal)
+            saveOrAdd.setTitle("Salvar", for: .normal)
         }
     }
     
@@ -38,16 +38,23 @@ class SecondViewController: UIViewController {
     }
     
     @IBAction func didTapButton(_ sender: Any) {
+        var nilValue = false
+        
+        if valueTextField.text == nil {
+            nilValue = true
+        }
+        
         let value = Double(valueTextField.text?.replacingOccurrences(of: ",", with: ".") ?? "0") ?? 0
         let name = nameTextField.text ?? ""
         
         if coordinator?.selectedOption == .add {
-            coordinator?.saveUser(BillItem(name: name, value: value))
+            coordinator?.saveUser(BillItem(name: name, value: value, changedUser: nilValue))
         } else {
             guard let selectedUser = coordinator?.selectedUser else { return }
             var user = selectedUser
             user.name = name
             user.value = value
+            user.changedUser = nilValue
             coordinator?.saveUser(user)
         }
         

@@ -13,5 +13,6 @@ struct BillItem: Equatable {
     
     var name: String?
     var value: Double?
+    var changedUser: Bool?
 }
 

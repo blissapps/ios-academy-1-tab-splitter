@@ -54,26 +54,43 @@ final class VCCoordinator: CoordinatorProtocol {
     }
      
     func saveUser(_ user: BillItem) {
+        addUser(user)
+        addChangedUser(user)
+        addValue()
+        uptadeRest()
+        delegate?.reloadData()
+        selectedUser = nil
+        selectedOption = nil
+    }
+    
+    func addUser(_ user:BillItem) {
+        guard let index = users.firstIndex(where: { $0.id == user.id }) else {
+            users.append(user)
+            return
+        }
+        users[index] = user
+    }
+    
+    func addChangedUser(_ user: BillItem) {
+        if user.changedUser == false {
+            if let index = changedUsers.firstIndex(where: { $0.id == user.id }) {
+                changedUsers.remove(at: index)
+            }
+        } else {
+            guard let index = changedUsers.firstIndex(where: { $0.id == user.id }) else {
+                changedUsers.append(user)
+                return
+            }
+            changedUsers[index] = user
+        }
+    }
+    
+    func addValue() {
+        /*
+        var changedValue: Double = 0
         var valueAmount: Double = 0
 
-        if selectedOption == .add {
-            users.append(user)
-        } else {
-            if let index = users.firstIndex(where: { $0.id == user.id }) {
-                users[index] = user
-                
-                if let index = changedUsers.firstIndex(where: { $0.id == user.id }) {
-                    changedUsers[index] = user
-                } else {
-                    changedUsers.append(user)
-                }
-            }
-        }
- 
-        var changedValue: Double = 0
-        
         changedUsers.forEach { changedValue += ($0.value ?? 0) }
-        print("changed value = \(changedValue)")
         
         let numberOfUnchangedUser = Double(users.count - changedUsers.count)
         
@@ -88,12 +105,14 @@ final class VCCoordinator: CoordinatorProtocol {
                     users[index].value = valueAmount
                 }
             }
-        }
-        
-        delegate?.reloadData()
-        
-        selectedUser = nil
-        selectedOption = nil
+        }*/
+    }
+    
+    func uptadeRest() {
+        var rest: Double = 0
+        users.forEach{ rest += ($0.value ?? 0)}
+        restAmount = billAmount -  rest
+        delegate?.updateRest(with: "\(String(restAmount))€")
     }
     
     func billAmountDidChange(_ value: Double) {
