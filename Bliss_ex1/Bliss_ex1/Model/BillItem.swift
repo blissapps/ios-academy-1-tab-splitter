@@ -12,7 +12,6 @@ struct BillItem: Equatable {
     let id = UUID().uuidString
     
     var name: String?
-    var value: Double?
+    var value: Decimal?
     var changedUser: Bool?
 }
-
