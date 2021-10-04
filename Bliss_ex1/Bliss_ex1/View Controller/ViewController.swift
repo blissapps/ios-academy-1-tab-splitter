@@ -72,7 +72,7 @@ extension ViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         let user = coordinator?.users[indexPath.row]
         cell.textLabel?.text = user?.name
-        cell.detailTextLabel?.text = "\(String(user?.value?.roundToPlaces(places: 2) ?? 0))€"
+        cell.detailTextLabel?.text = "\(String(user?.value ?? 0))€"
         return cell
     }
     

@@ -86,27 +86,29 @@ final class VCCoordinator: CoordinatorProtocol {
     }
     
     func addValue() {
-        /*
+        
         var changedValue: Double = 0
         var valueAmount: Double = 0
 
         changedUsers.forEach { changedValue += ($0.value ?? 0) }
-        
+
         let numberOfUnchangedUser = Double(users.count - changedUsers.count)
         
-        if numberOfUnchangedUser != 0.0 && !changedUsers.isEmpty {
-            valueAmount =
-                (billAmount - changedValue) / numberOfUnchangedUser
-            
-            let changedIds = changedUsers.map { $0.id }
-
-            for (index, user) in users.enumerated() {
-                if !changedIds.contains(user.id) {
-                    users[index].value = valueAmount
-                }
+        if (billAmount - changedValue) < 0 {
+            valueAmount = 0
+        } else {
+            if numberOfUnchangedUser == 0 {
+                valueAmount = 0
+            } else {
+                valueAmount = (billAmount - changedValue) / numberOfUnchangedUser
             }
         }
-         */
+        changedUsers.forEach({print($0.value)})
+        for (index, user) in users.enumerated() {
+            if !changedUsers.contains(user) {
+                users[index].value = valueAmount
+            }
+        }
     }
     
     func uptadeRest() {
