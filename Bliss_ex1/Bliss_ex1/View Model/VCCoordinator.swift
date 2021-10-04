@@ -105,7 +105,8 @@ final class VCCoordinator: CoordinatorProtocol {
                     users[index].value = valueAmount
                 }
             }
-        }*/
+        }
+         */
     }
     
     func uptadeRest() {

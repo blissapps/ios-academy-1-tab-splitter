@@ -16,3 +16,4 @@ struct BillItem: Equatable {
     var changedUser: Bool?
 }
 
+
