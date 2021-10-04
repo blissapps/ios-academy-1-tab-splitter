@@ -20,6 +20,7 @@
 		0765CA072705E18F000B4E44 /* CoordinatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0765CA062705E18F000B4E44 /* CoordinatorProtocol.swift */; };
 		0765CA092705F92C000B4E44 /* VCCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0765CA082705F92C000B4E44 /* VCCoordinator.swift */; };
 		07D40B8C2707179D000B88A2 /* Double+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D40B8B2707179D000B88A2 /* Double+Extensions.swift */; };
+		5F1704B0270B3C0800564DFC /* BillSpliterEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F1704AF270B3C0800564DFC /* BillSpliterEngine.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +60,7 @@
 		0765CA062705E18F000B4E44 /* CoordinatorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatorProtocol.swift; sourceTree = "<group>"; };
 		0765CA082705F92C000B4E44 /* VCCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCCoordinator.swift; sourceTree = "<group>"; };
 		07D40B8B2707179D000B88A2 /* Double+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Extensions.swift"; sourceTree = "<group>"; };
+		5F1704AF270B3C0800564DFC /* BillSpliterEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillSpliterEngine.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -162,6 +164,7 @@
 			isa = PBXGroup;
 			children = (
 				0765C9FC2705B794000B4E44 /* BillItem.swift */,
+				5F1704AF270B3C0800564DFC /* BillSpliterEngine.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -323,6 +326,7 @@
 			files = (
 				07D40B8C2707179D000B88A2 /* Double+Extensions.swift in Sources */,
 				07655B282704C90F005DFF09 /* SecondViewController.swift in Sources */,
+				5F1704B0270B3C0800564DFC /* BillSpliterEngine.swift in Sources */,
 				07655AF92704AA58005DFF09 /* ViewController.swift in Sources */,
 				0765CA072705E18F000B4E44 /* CoordinatorProtocol.swift in Sources */,
 				0765CA092705F92C000B4E44 /* VCCoordinator.swift in Sources */,

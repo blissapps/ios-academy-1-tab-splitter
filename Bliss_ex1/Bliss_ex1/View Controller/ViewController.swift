@@ -30,8 +30,11 @@ class ViewController: UIViewController {
     
     @IBAction func addButton(_ sender: Any) {
         coordinator?.add()
+        
     }
 }
+
+//MARK: - Coordinator Delegate
 
 extension ViewController: CoordinatorDelegate {
     func reloadData() {
@@ -66,13 +69,14 @@ extension ViewController: UITableViewDelegate {
 extension ViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return coordinator?.users.count ?? 0
+        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         let user = coordinator?.users[indexPath.row]
         cell.textLabel?.text = user?.name
-        cell.detailTextLabel?.text = "\(String(user?.value ?? 0))€"
+        cell.detailTextLabel?.text = "\((user?.value ?? 0).description)€"
         return cell
     }
     
@@ -100,8 +104,8 @@ extension ViewController: UITextFieldDelegate {
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         if let text = textField.text?.replacingOccurrences(of: ",", with: "."),
-           let billAmount = Double(text) {
-            let formattedText = String(billAmount.roundToPlaces(places: 2)).replacingOccurrences(of: ".", with: Locale.current.decimalSeparator ?? ",")
+           var billAmount = Decimal(string: text , locale: .current) {
+            let formattedText = (billAmount.roundToPlaces(places: 2).description).replacingOccurrences(of: ".", with: Locale.current.decimalSeparator ?? ",")
             view.endEditing(true)
             totalTextField.text = "\(formattedText)€"
             coordinator?.billAmountDidChange(billAmount)

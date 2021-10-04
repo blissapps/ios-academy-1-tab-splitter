@@ -20,12 +20,13 @@ protocol CoordinatorDelegate: AnyObject {
 }
 
 protocol CoordinatorProtocol {
+   
     var delegate: CoordinatorDelegate? { get set }
     var selectedUser: BillItem? { get }
     var selectedOption: OperationOption? { get }
     var users: [BillItem] { get }
     
-    func billAmountDidChange(_ value: Double)
+    func billAmountDidChange(_ value: Decimal)
     func selectUser(at index: Int)
     func saveUser(_ user: BillItem)
     func add()

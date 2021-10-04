@@ -44,7 +44,9 @@ class SecondViewController: UIViewController {
             nilValue = true
         }
         
-        let value = Double(valueTextField.text?.replacingOccurrences(of: ",", with: ".") ?? "0") ?? 0
+        let valueAsString = valueTextField.text?.replacingOccurrences(of: ",", with: ".") ?? "0"
+        
+        let value = Decimal(string: valueAsString, locale: Locale.current) ?? 0
         let name = nameTextField.text ?? ""
         
         if coordinator?.selectedOption == .add {

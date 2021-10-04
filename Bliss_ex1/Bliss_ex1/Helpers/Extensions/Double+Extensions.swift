@@ -7,18 +7,19 @@
 
 import Foundation
 
-extension Double {
+extension Decimal {
     var displayText: String {
-        return String(format: "%f", self)
+        return String(format: "%@", self.description)
     }
     
-    func roundToPlaces(places:Int) -> Double {
-        let divisor = pow(10.0, Double(places))
-        return (self * divisor).rounded() / divisor
+    mutating func roundToPlaces(places:Int) -> Decimal {
+        var result = self
+        NSDecimalRound(&self, &result, places, .bankers)
+        return self
     }
 }
 
-extension Optional where Wrapped == Double {
+extension Optional where Wrapped == Decimal {
     var displayText: String {
         (self ?? 0).displayText
     }
