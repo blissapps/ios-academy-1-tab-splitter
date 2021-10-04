@@ -8,10 +8,10 @@
 import Foundation
 import UIKit
 
-struct BillItem: Equatable {
+public struct BillItem: Equatable {
     let id = UUID().uuidString
     
-    var name: String?
-    var value: Decimal?
-    var changedUser: Bool?
+    public var name: String?
+    public var value: Decimal?
+    public var changedUser: Bool?
 }

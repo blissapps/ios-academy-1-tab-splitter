@@ -21,6 +21,7 @@
 		0765CA092705F92C000B4E44 /* VCCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0765CA082705F92C000B4E44 /* VCCoordinator.swift */; };
 		07D40B8C2707179D000B88A2 /* Double+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D40B8B2707179D000B88A2 /* Double+Extensions.swift */; };
 		5F1704B0270B3C0800564DFC /* BillSpliterEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F1704AF270B3C0800564DFC /* BillSpliterEngine.swift */; };
+		E2FCA0C2270B68340039709C /* BillItem+ArrayExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2FCA0C1270B68340039709C /* BillItem+ArrayExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +62,7 @@
 		0765CA082705F92C000B4E44 /* VCCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCCoordinator.swift; sourceTree = "<group>"; };
 		07D40B8B2707179D000B88A2 /* Double+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Extensions.swift"; sourceTree = "<group>"; };
 		5F1704AF270B3C0800564DFC /* BillSpliterEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillSpliterEngine.swift; sourceTree = "<group>"; };
+		E2FCA0C1270B68340039709C /* BillItem+ArrayExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BillItem+ArrayExtension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -190,6 +192,7 @@
 			isa = PBXGroup;
 			children = (
 				07D40B8B2707179D000B88A2 /* Double+Extensions.swift */,
+				E2FCA0C1270B68340039709C /* BillItem+ArrayExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -331,6 +334,7 @@
 				0765CA072705E18F000B4E44 /* CoordinatorProtocol.swift in Sources */,
 				0765CA092705F92C000B4E44 /* VCCoordinator.swift in Sources */,
 				0765C9FD2705B794000B4E44 /* BillItem.swift in Sources */,
+				E2FCA0C2270B68340039709C /* BillItem+ArrayExtension.swift in Sources */,
 				07655AF52704AA58005DFF09 /* AppDelegate.swift in Sources */,
 				07655AF72704AA58005DFF09 /* SceneDelegate.swift in Sources */,
 			);

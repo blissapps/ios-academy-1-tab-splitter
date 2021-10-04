@@ -7,53 +7,41 @@
 
 import Foundation
 
-class BillSpliterEngine {
-    
-    var billAmount: Decimal = 0
-    var restAmount: Decimal = 0
-    var users: [BillItem] = []
-    private var changedUsers: [BillItem] = []
-    
+public class BillSpliterEngine {
+    //MARK: - Private vars
+    public var billAmount: Decimal = 0 {
+        didSet {
+            recalculate()
+        }
+    }
+    public var restAmount: Decimal = 0
+    public var users: [BillItem] = []
+    //MARK: - Private computed vars
+    private var changedUsers: [BillItem] {
+        users.filter({ $0.changedUser ?? false })
+    }
+
+    //MARK: - Public methods
     func reset() {
         users = []
-        restAmount = 0
         billAmount = 0
-    }
-    
-    func setBill(_ bill: Decimal) {
-        self.billAmount = bill
     }
      
     func saveUser(_ user: BillItem) {
         addUser(user)
-        addChangedUser(user)
-        addValue()
-        uptadeRest()
+        recalculate()
     }
     
     func addUser(_ user:BillItem) {
-        guard let index = users.firstIndex(where: { $0.id == user.id }) else {
+        if !users.contains(user: user) {
             users.append(user)
             return
         }
-        users[index] = user
+        users.replace(id: user.id, user: user)
     }
-    
-    func addChangedUser(_ user: BillItem) {
-        if user.changedUser == false {
-            if let index = changedUsers.firstIndex(where: { $0.id == user.id }) {
-                changedUsers.remove(at: index)
-            }
-        } else {
-            guard let index = changedUsers.firstIndex(where: { $0.id == user.id }) else {
-                changedUsers.append(user)
-                return
-            }
-            changedUsers[index] = user
-        }
-    }
-    
-    func addValue() {
+
+    //MARK: - Private methods
+    private func recalculate() {
         
         var changedValue: Decimal = 0
         var valueAmount: Decimal = 0
@@ -77,16 +65,11 @@ class BillSpliterEngine {
                 users[index].value = valueAmount
             }
         }
-    }
-    
-    func uptadeRest() {
+
+        //update remainder
         var rest: Decimal = 0
         users.forEach{ rest += ($0.value ?? 0)}
         restAmount = billAmount -  rest
-    }
-    
-    func billAmountDidChange(_ value: Decimal) {
-        billAmount = value
     }
 
 }
