@@ -48,14 +48,6 @@ extension ViewController: CoordinatorDelegate {
     func updateTotal(with text: String) {
         totalTextField.text = text
     }
-    
-    func next() {
-        if let vc = storyboard?.instantiateViewController(withIdentifier: "SecondViewController") as? SecondViewController {
-            navigationController?.pushViewController(vc, animated: true)
-            vc.coordinator = coordinator
-            vc.changeTitleButton()
-        }
-    }
 }
 
 //MARK: - TableView

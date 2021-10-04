@@ -9,8 +9,8 @@ import Foundation
 import UIKit
 
 final class VCCoordinator: CoordinatorProtocol {
-    var billEngine = BillSpliterEngine()
-
+    var billEngine: BillSpliterEngine
+    var navigationController: UINavigationController
     var delegate: CoordinatorDelegate?
     var selectedUser: BillItem?
     var selectedOption: OperationOption?
@@ -18,10 +18,19 @@ final class VCCoordinator: CoordinatorProtocol {
         billEngine.users
     }
 
+    lazy var storyboard: UIStoryboard = {
+        UIStoryboard.init(name: "Main", bundle: nil)
+    }()
+
+    init(navigationController: UINavigationController) {
+        self.navigationController = navigationController
+        billEngine = BillSpliterEngine()
+    }
+
     func selectUser(at index: Int) {
         selectedUser = billEngine.users[index]
         selectedOption = .save
-        delegate?.next()
+        pushManageUserViewController()
     }
 
     func reset() {
@@ -40,13 +49,13 @@ final class VCCoordinator: CoordinatorProtocol {
 
     func add() {
         selectedOption = .add
-        delegate?.next()
+        pushManageUserViewController()
     }
 
     func back() {
         selectedUser = nil
         selectedOption = nil
-        delegate?.next()
+        navigationController.popViewController(animated: true)
     }
 
     func saveUser(_ user: BillItem) {
@@ -58,5 +67,13 @@ final class VCCoordinator: CoordinatorProtocol {
 
     func billAmountDidChange(_ value: Decimal) {
         billEngine.billAmount = value
+    }
+
+    private func pushManageUserViewController() {
+        if let vc = storyboard.instantiateViewController(withIdentifier: "SecondViewController") as? SecondViewController {
+            navigationController.pushViewController(vc, animated: true)
+            vc.coordinator = self
+            vc.changeTitleButton()
+        }
     }
 }

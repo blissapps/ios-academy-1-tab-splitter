@@ -22,6 +22,10 @@ public class BillSpliterEngine {
     }
 
     //MARK: - Public methods
+    init () {
+
+    }
+
     func reset() {
         users = []
         billAmount = 0

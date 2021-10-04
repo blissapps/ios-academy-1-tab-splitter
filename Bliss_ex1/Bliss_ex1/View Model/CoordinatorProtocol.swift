@@ -16,7 +16,6 @@ protocol CoordinatorDelegate: AnyObject {
     func reloadData()
     func updateRest(with text: String)
     func updateTotal(with text: String)
-    func next()
 }
 
 protocol CoordinatorProtocol {

@@ -59,7 +59,7 @@ class SecondViewController: UIViewController {
             user.changedUser = nilValue
             coordinator?.saveUser(user)
         }
-        navigationController?.popViewController(animated: true)
+        coordinator?.back()
     }
 }
 
