@@ -14,6 +14,7 @@ enum OperationOption {
 
 protocol CoordinatorDelegate: AnyObject {
     func reloadData()
+    func displayBillAmountError()
     func updateRest(with text: String)
     func updateTotal(with text: String)
 }
@@ -25,7 +26,7 @@ protocol CoordinatorProtocol {
     var selectedOption: OperationOption? { get }
     var users: [BillItem] { get }
     
-    func billAmountDidChange(_ value: Decimal)
+    func setBillAmount(_ value: String)
     func selectUser(at index: Int)
     func saveUser(_ user: BillItem)
     func add()

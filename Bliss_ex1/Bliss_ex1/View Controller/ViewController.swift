@@ -13,6 +13,7 @@ class ViewController: UIViewController {
     @IBOutlet weak private var tableView: UITableView!
     @IBOutlet weak private var restLabel: UILabel!
     @IBOutlet weak private var totalTextField: UITextField!
+    @IBOutlet weak private var totalErrorLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,7 +21,7 @@ class ViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         totalTextField.delegate = self
-        
+        totalErrorLabel.isHidden = true
         self.dismissKeyboard()
     }
     
@@ -47,6 +48,12 @@ extension ViewController: CoordinatorDelegate {
     
     func updateTotal(with text: String) {
         totalTextField.text = text
+        totalErrorLabel.isHidden = true
+    }
+
+    func displayBillAmountError() {
+        totalErrorLabel.isHidden = false
+        totalErrorLabel.text = "bill_amount_invalid_error_text".localized
     }
 }
 
@@ -95,13 +102,9 @@ extension ViewController: UITextFieldDelegate {
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-        if let text = textField.text?.replacingOccurrences(of: ",", with: "."),
-           var billAmount = Decimal(string: text , locale: .current) {
-            let formattedText = (billAmount.roundToPlaces(places: 2).description).replacingOccurrences(of: ".", with: Locale.current.decimalSeparator ?? ",")
-            view.endEditing(true)
-            totalTextField.text = "\(formattedText)€"
-            coordinator?.billAmountDidChange(billAmount)
-        }
+        guard let text = textField.text else { return }
+        coordinator?.setBillAmount(text)
+        view.endEditing(true)
     }
 }
 

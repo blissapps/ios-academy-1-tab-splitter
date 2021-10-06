@@ -1,0 +1,11 @@
+/* 
+  Localizable.strings
+  Bliss_ex1
+
+  Created by Tiago Janela on 10/6/21.
+  
+*/
+
+"add_button_title" = "Adicionar";
+"save_button_title" = "Salvar";
+"bill_amount_invalid_error_text" = "Valor inválido";

@@ -66,9 +66,16 @@ final class VCCoordinator: CoordinatorProtocol {
         selectedOption = nil
     }
 
-    func billAmountDidChange(_ value: Decimal) {
-        billEngine.billAmount = value
-        delegate?.updateRest(with: "\(billEngine.restAmount)€")
+    func setBillAmount(_ value: String) {
+        let result = DecimalParser.parseDecimalString(value)
+        switch result {
+        case .failure:
+            delegate?.displayBillAmountError()
+        case .success(let billAmount):
+            billEngine.billAmount = billAmount
+            delegate?.updateTotal(with: billEngine.billAmount.displayAsCurrencyFormat)
+            delegate?.updateRest(with: billEngine.restAmount.displayAsCurrencyFormat)
+        }
     }
 
     private func pushManageUserViewController() {

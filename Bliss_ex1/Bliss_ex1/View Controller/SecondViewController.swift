@@ -7,6 +7,12 @@
 
 import UIKit
 
+extension String {
+    var localized: String {
+        NSLocalizedString(self, comment: self)
+    }
+}
+
 class SecondViewController: UIViewController {
 
     var coordinator: CoordinatorProtocol?
@@ -27,9 +33,9 @@ class SecondViewController: UIViewController {
     func changeTitleButton() {
         _ = view
         if coordinator?.selectedOption == .add {
-            saveOrAdd.setTitle("Adicionar", for: .normal)
+            saveOrAdd.setTitle("add_button_title".localized, for: .normal)
         } else {
-            saveOrAdd.setTitle("Salvar", for: .normal)
+            saveOrAdd.setTitle("save_button_title".localized, for: .normal)
         }
     }
     
