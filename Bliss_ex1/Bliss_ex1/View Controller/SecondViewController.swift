@@ -39,8 +39,8 @@ class SecondViewController: UIViewController {
     
     @IBAction func didTapButton(_ sender: Any) {
         var nilValue = false
-        print("chega-mos aqui")
-        if valueTextField.text == nil {
+        
+        if valueTextField.text != "" {
             nilValue = true
         }
         

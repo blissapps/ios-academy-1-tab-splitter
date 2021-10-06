@@ -8,6 +8,7 @@
 import Foundation
 
 public class BillSpliterEngine {
+    
     //MARK: - Private vars
     public var billAmount: Decimal = 0 {
         didSet {
@@ -15,10 +16,12 @@ public class BillSpliterEngine {
         }
     }
     public var restAmount: Decimal = 0
+    
     public var users: [BillItem] = []
+    
     //MARK: - Private computed vars
     private var changedUsers: [BillItem] {
-        users.filter({ $0.changedUser ?? false })
+        users.filter({ $0.changedUser == true })
     }
 
     //MARK: - Public methods
@@ -37,12 +40,13 @@ public class BillSpliterEngine {
     }
     
     func addUser(_ user:BillItem) {
-        if !users.contains(user: user) {
+        if !users.contains(user) {
             users.append(user)
             return
         }
         users.replace(id: user.id, user: user)
     }
+    
 
     //MARK: - Private methods
     private func recalculate() {
@@ -57,13 +61,9 @@ public class BillSpliterEngine {
         if (billAmount - changedValue) < 0 {
             valueAmount = 0
         } else {
-            if numberOfUnchangedUser == 0 {
-                valueAmount = 0
-            } else {
-                valueAmount = (billAmount - changedValue) / numberOfUnchangedUser
-            }
+            valueAmount = (billAmount - changedValue) / numberOfUnchangedUser
         }
-        changedUsers.forEach({print($0.value)})
+        
         for (index, user) in users.enumerated() {
             if !changedUsers.contains(user) {
                 users[index].value = valueAmount

@@ -8,7 +8,7 @@
 import Foundation
 
 extension Array where Element == BillItem {
-    func contains(user: BillItem) -> Bool {
+    func contains(_ user: BillItem) -> Bool {
         first(where: { $0.id == user.id }) != nil
     }
 

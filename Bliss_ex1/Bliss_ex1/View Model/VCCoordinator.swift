@@ -61,12 +61,14 @@ final class VCCoordinator: CoordinatorProtocol {
     func saveUser(_ user: BillItem) {
         billEngine.saveUser(user)
         delegate?.reloadData()
+        delegate?.updateRest(with: "\(billEngine.restAmount)€")
         selectedUser = nil
         selectedOption = nil
     }
 
     func billAmountDidChange(_ value: Decimal) {
         billEngine.billAmount = value
+        delegate?.updateRest(with: "\(billEngine.restAmount)€")
     }
 
     private func pushManageUserViewController() {
