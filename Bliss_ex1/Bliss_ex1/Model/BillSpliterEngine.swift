@@ -9,6 +9,10 @@ import Foundation
 
 public class BillSpliterEngine {
     
+    let apiClient = ApiClient()
+    
+    var latest: LatestDto?
+   
     //MARK: - Private vars
     public var billAmount: Decimal = 0 {
         didSet {
@@ -26,7 +30,9 @@ public class BillSpliterEngine {
 
     //MARK: - Public methods
     init () {
-
+        apiClient.getLatest { latest in
+            self.latest = latest
+        }
     }
 
     func reset() {
@@ -54,7 +60,7 @@ public class BillSpliterEngine {
         var changedValue: Decimal = 0
         var valueAmount: Decimal = 0
 
-        changedUsers.forEach { changedValue += ($0.value ?? 0) }
+        changedUsers.forEach { changedValue += ($0.value?.amount ?? 0) }
 
         let numberOfUnchangedUser = Decimal(users.count - changedUsers.count)
         
@@ -66,13 +72,13 @@ public class BillSpliterEngine {
         
         for (index, user) in users.enumerated() {
             if !changedUsers.contains(user) {
-                users[index].value = valueAmount
+                users[index].value?.amount = valueAmount
             }
         }
 
         //update remainder
         var rest: Decimal = 0
-        users.forEach{ rest += ($0.value ?? 0)}
+        users.forEach{ rest += ($0.value?.amount ?? 0)}
         restAmount = billAmount -  rest
     }
 

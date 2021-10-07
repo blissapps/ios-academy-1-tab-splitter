@@ -9,6 +9,16 @@ import Foundation
 
 import Moya
 
+struct LatestDto: Decodable{
+    let success: Bool
+    let timestamp: Int
+    let base: String
+    let date: String
+    let rates: [String: Decimal]
+}
+
+typealias ApiClientResultCallback = (LatestDto) -> Void
+
 class ApiClient {
     let provider: MoyaProvider<Currency>
     
@@ -16,11 +26,12 @@ class ApiClient {
         provider = MoyaProvider<Currency>()
     }
     
-    func getLatest() {
-        provider.request(.latest) { result in
+    func getLatest(completion: @escaping ApiClientResultCallback){
+        provider.request(.latest, completion:  { result in
             let response = try? result.get()
-            print(response)
-        }
+            guard let latest = try? response?.map(LatestDto.self) else{ return }
+            completion(latest)
+        })
     }
 }
 

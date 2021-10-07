@@ -54,14 +54,15 @@ class SecondViewController: UIViewController {
         
         let value = Decimal(string: valueAsString, locale: Locale.current) ?? 0
         let name = nameTextField.text ?? ""
+        let amountValue = AmountValue(amount: value, currencyCode: "")
         
         if coordinator?.selectedOption == .add {
-            coordinator?.saveUser(BillItem(name: name, value: value, changedUser: nilValue))
+            coordinator?.saveUser(BillItem(name: name, value: amountValue, changedUser: nilValue))
         } else {
             guard let selectedUser = coordinator?.selectedUser else { return }
             var user = selectedUser
             user.name = name
-            user.value = value
+            user.value = amountValue
             user.changedUser = nilValue
             coordinator?.saveUser(user)
         }
