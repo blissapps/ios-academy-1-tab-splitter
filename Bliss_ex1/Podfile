@@ -1,0 +1,21 @@
+# Uncomment the next line to define a global platform for your project
+# platform :ios, '9.0'
+
+target 'Bliss_ex1' do
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
+
+  # Pods for Bliss_ex1
+    
+  pod 'Moya', '~> 15.0'
+    
+  target 'Bliss_ex1Tests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+  target 'Bliss_ex1UITests' do
+    # Pods for testing
+  end
+
+end
