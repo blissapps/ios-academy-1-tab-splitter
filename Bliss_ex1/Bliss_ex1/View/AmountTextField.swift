@@ -13,7 +13,8 @@ public protocol AmountTextFieldDelegate: class {
 }
 
 public class AmountTextField: UITextField {
-
+    var coordinator: CoordinatorProtocol?
+    
     public weak var amountTextFieldDelegate: AmountTextFieldDelegate?
 
     public var selectedCurrency: String = ""

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0730DE20270F01A000B796C3 /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0730DE1F270F01A000B796C3 /* Currency.swift */; };
+		075392162710A02C001803E1 /* CurrencyPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075392152710A02C001803E1 /* CurrencyPickerView.swift */; };
 		07655AF52704AA58005DFF09 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07655AF42704AA58005DFF09 /* AppDelegate.swift */; };
 		07655AF72704AA58005DFF09 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07655AF62704AA58005DFF09 /* SceneDelegate.swift */; };
 		07655AF92704AA58005DFF09 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07655AF82704AA58005DFF09 /* ViewController.swift */; };
@@ -50,6 +51,7 @@
 
 /* Begin PBXFileReference section */
 		0730DE1F270F01A000B796C3 /* Currency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
+		075392152710A02C001803E1 /* CurrencyPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyPickerView.swift; sourceTree = "<group>"; };
 		07655AF12704AA58005DFF09 /* Bliss_ex1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bliss_ex1.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		07655AF42704AA58005DFF09 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		07655AF62704AA58005DFF09 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -195,6 +197,7 @@
 			children = (
 				07655AF82704AA58005DFF09 /* ViewController.swift */,
 				07655B272704C90F005DFF09 /* SecondViewController.swift */,
+				075392152710A02C001803E1 /* CurrencyPickerView.swift */,
 			);
 			path = "View Controller";
 			sourceTree = "<group>";
@@ -517,6 +520,7 @@
 				0765CA092705F92C000B4E44 /* VCCoordinator.swift in Sources */,
 				0765C9FD2705B794000B4E44 /* BillItem.swift in Sources */,
 				E2FCA0C2270B68340039709C /* BillItem+ArrayExtension.swift in Sources */,
+				075392162710A02C001803E1 /* CurrencyPickerView.swift in Sources */,
 				07655AF52704AA58005DFF09 /* AppDelegate.swift in Sources */,
 				07655AF72704AA58005DFF09 /* SceneDelegate.swift in Sources */,
 			);

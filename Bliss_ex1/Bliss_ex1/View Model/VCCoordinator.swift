@@ -14,8 +14,13 @@ final class VCCoordinator: CoordinatorProtocol {
     var delegate: CoordinatorDelegate?
     var selectedUser: BillItem?
     var selectedOption: OperationOption?
+    
     var users: [BillItem] {
         billEngine.users
+    }
+    
+    var latestCurrencies: LatestDto? {
+        billEngine.latest
     }
 
     lazy var storyboard: UIStoryboard = {
@@ -88,5 +93,16 @@ final class VCCoordinator: CoordinatorProtocol {
             vc.coordinator = self
             vc.changeTitleButton()
         }
+    }
+    
+    private func goToCurrencyPickerScreen() {
+        guard let vc = storyboard.instantiateViewController(withIdentifier: "CurrencyPickerViewController") as? CurrencyPickerView,
+              let originVC = navigationController.topViewController as? ViewController else {
+            return
+        }
+        
+        navigationController.pushViewController(vc, animated: true)
+        vc.coordinator = self
+        vc.currencies = originVC.currencies
     }
 }

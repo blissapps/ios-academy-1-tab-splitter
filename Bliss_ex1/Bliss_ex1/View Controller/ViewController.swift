@@ -10,6 +10,8 @@ import UIKit
 class ViewController: UIViewController {
     var coordinator: CoordinatorProtocol?
     
+    var currencies: [String:Decimal] = [:]
+    
     @IBOutlet weak private var tableView: UITableView!
     @IBOutlet weak private var restLabel: UILabel!
     @IBOutlet weak private var totalTextField: AmountTextField!
