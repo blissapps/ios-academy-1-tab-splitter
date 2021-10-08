@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -26,6 +26,7 @@
 		B0D2F623A5B64FB3080F3321 /* Pods_Bliss_ex1Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C34E9D1611969C781C39CCC /* Pods_Bliss_ex1Tests.framework */; };
 		E249DC29270DB9480054CCC7 /* DecimalParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = E249DC28270DB9480054CCC7 /* DecimalParser.swift */; };
 		E249DC33270DBAF60054CCC7 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E249DC35270DBAF60054CCC7 /* Localizable.strings */; };
+		E2D7EC472710624E0039C7F8 /* AmountTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D7EC462710624E0039C7F8 /* AmountTextField.swift */; };
 		E2FCA0C2270B68340039709C /* BillItem+ArrayExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2FCA0C1270B68340039709C /* BillItem+ArrayExtension.swift */; };
 		FA82D4AFC27B814E06F63BA5 /* Pods_Bliss_ex1_Bliss_ex1UITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C8BBA91533876192332793A /* Pods_Bliss_ex1_Bliss_ex1UITests.framework */; };
 /* End PBXBuildFile section */
@@ -79,6 +80,7 @@
 		E249DC28270DB9480054CCC7 /* DecimalParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecimalParser.swift; sourceTree = "<group>"; };
 		E249DC34270DBAF60054CCC7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		E249DC39270DBB3D0054CCC7 /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-PT"; path = "pt-PT.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		E2D7EC462710624E0039C7F8 /* AmountTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmountTextField.swift; sourceTree = "<group>"; };
 		E2FCA0C1270B68340039709C /* BillItem+ArrayExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BillItem+ArrayExtension.swift"; sourceTree = "<group>"; };
 		E807D26CA513CA1DFAE96AFC /* Pods_Bliss_ex1.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Bliss_ex1.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDE354BFB9A729BC0A567879 /* Pods-Bliss_ex1.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bliss_ex1.release.xcconfig"; path = "Target Support Files/Pods-Bliss_ex1/Pods-Bliss_ex1.release.xcconfig"; sourceTree = "<group>"; };
@@ -183,6 +185,7 @@
 			children = (
 				07655AFF2704AA5E005DFF09 /* LaunchScreen.storyboard */,
 				07655AFA2704AA58005DFF09 /* Main.storyboard */,
+				E2D7EC462710624E0039C7F8 /* AmountTextField.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -242,7 +245,6 @@
 				6F9E1D283F3D765330EB314F /* Pods-Bliss_ex1Tests.debug.xcconfig */,
 				1F8E37519ADC0F761306BDD0 /* Pods-Bliss_ex1Tests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -509,6 +511,7 @@
 				07655B282704C90F005DFF09 /* SecondViewController.swift in Sources */,
 				5F1704B0270B3C0800564DFC /* BillSpliterEngine.swift in Sources */,
 				07655AF92704AA58005DFF09 /* ViewController.swift in Sources */,
+				E2D7EC472710624E0039C7F8 /* AmountTextField.swift in Sources */,
 				0765CA072705E18F000B4E44 /* CoordinatorProtocol.swift in Sources */,
 				E249DC29270DB9480054CCC7 /* DecimalParser.swift in Sources */,
 				0765CA092705F92C000B4E44 /* VCCoordinator.swift in Sources */,

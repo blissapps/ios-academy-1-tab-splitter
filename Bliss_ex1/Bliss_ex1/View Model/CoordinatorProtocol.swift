@@ -27,6 +27,7 @@ protocol CoordinatorProtocol {
     var users: [BillItem] { get }
     
     func setBillAmount(_ value: String)
+    func setBillAmount(_ value: Decimal)
     func selectUser(at index: Int)
     func saveUser(_ user: BillItem)
     func add()

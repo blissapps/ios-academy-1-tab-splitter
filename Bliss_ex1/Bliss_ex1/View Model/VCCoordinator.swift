@@ -66,15 +66,19 @@ final class VCCoordinator: CoordinatorProtocol {
         selectedOption = nil
     }
 
+    func setBillAmount(_ value: Decimal) {
+        billEngine.billAmount = value
+        delegate?.updateTotal(with: billEngine.billAmount.displayAsCurrencyFormat)
+        delegate?.updateRest(with: billEngine.restAmount.displayAsCurrencyFormat)
+    }
+
     func setBillAmount(_ value: String) {
         let result = DecimalParser.parseDecimalString(value)
         switch result {
         case .failure:
             delegate?.displayBillAmountError()
         case .success(let billAmount):
-            billEngine.billAmount = billAmount
-            delegate?.updateTotal(with: billEngine.billAmount.displayAsCurrencyFormat)
-            delegate?.updateRest(with: billEngine.restAmount.displayAsCurrencyFormat)
+            setBillAmount(billAmount)
         }
     }
 

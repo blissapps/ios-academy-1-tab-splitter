@@ -12,7 +12,7 @@ class ViewController: UIViewController {
     
     @IBOutlet weak private var tableView: UITableView!
     @IBOutlet weak private var restLabel: UILabel!
-    @IBOutlet weak private var totalTextField: UITextField!
+    @IBOutlet weak private var totalTextField: AmountTextField!
     @IBOutlet weak private var totalErrorLabel: UILabel!
     
     override func viewDidLoad() {
@@ -20,8 +20,10 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view.
         tableView.delegate = self
         tableView.dataSource = self
-        totalTextField.delegate = self
         totalErrorLabel.isHidden = true
+        totalTextField.placeholder = "amount_text_field_placeholder".localized
+        totalTextField.amount = AmountValue(amount: 123.456, currencyCode: "EUR")
+        totalTextField.amountTextFieldDelegate = self
         self.dismissKeyboard()
     }
     
@@ -32,6 +34,19 @@ class ViewController: UIViewController {
     @IBAction func addButton(_ sender: Any) {
         coordinator?.add()
         
+    }
+}
+
+//MARK: - Amount Text Field Delegate
+
+extension ViewController: AmountTextFieldDelegate {
+    func amountDidChange(from: AmountTextField, amount: AmountValue?) {
+        print(amount)
+        guard let amount = amount else {
+            print("no amount")
+            return
+        }
+        coordinator?.setBillAmount(amount.amount)
     }
 }
 

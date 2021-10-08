@@ -18,7 +18,7 @@ class SecondViewController: UIViewController {
     var coordinator: CoordinatorProtocol?
     
     @IBOutlet weak private var nameTextField: UITextField!
-    @IBOutlet weak private var valueTextField: UITextField!
+    @IBOutlet weak private var valueTextField: AmountTextField!
     @IBOutlet weak private var saveOrAdd: UIButton!
     
     override func viewDidLoad() {
