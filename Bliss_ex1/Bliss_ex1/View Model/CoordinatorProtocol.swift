@@ -25,7 +25,7 @@ protocol CoordinatorProtocol {
     var selectedUser: BillItem? { get }
     var selectedOption: OperationOption? { get }
     var users: [BillItem] { get }
-    var latestCurrencies: LatestDto? { get }
+    var latestCurrencies: [String : Decimal]? { get }
     
     func setBillAmount(_ value: String)
     func setBillAmount(_ value: Decimal)

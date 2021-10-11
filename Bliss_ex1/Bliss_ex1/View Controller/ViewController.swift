@@ -26,7 +26,9 @@ class ViewController: UIViewController {
         tableView.dataSource = self
         totalErrorLabel.isHidden = true
         totalTextField.placeholder = "amount_text_field_placeholder".localized
-        totalTextField.amount = AmountValue(amount: 123.456, currencyCode: "EUR")
+        
+        totalTextField.amount = AmountValue(amount: 0, currencyCode: "EUR")
+        
         totalTextField.amountTextFieldDelegate = self
         
         self.dismissKeyboard()
@@ -46,7 +48,6 @@ class ViewController: UIViewController {
 
 extension ViewController: AmountTextFieldDelegate {
     func amountDidChange(from: AmountTextField, amount: AmountValue?) {
-        print(amount)
         guard let amount = amount else {
             print("no amount")
             return
@@ -95,7 +96,7 @@ extension ViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         let user = coordinator?.users[indexPath.row]
         cell.textLabel?.text = user?.name
-        cell.detailTextLabel?.text = "\((user?.value?.amount ?? 0).description)€"
+        cell.detailTextLabel?.text = "\((user?.value?.amount ?? 0).description)"
         return cell
     }
     
@@ -117,7 +118,7 @@ extension ViewController: UITextFieldDelegate {
             return true
         }
         
-        totalTextField.placeholder = "Insert the bill"
+        totalTextField.placeholder = "insert_bill".localized
         return false
     }
     

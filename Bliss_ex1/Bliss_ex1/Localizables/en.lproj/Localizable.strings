@@ -9,3 +9,5 @@
 "add_button_title" = "Add";
 "save_button_title" = "Save";
 "bill_amount_invalid_error_text" = "Invalid amount";
+"insert_bill" = "Insert the bill";
+"insert_name" = "Insert the name";

@@ -19,8 +19,8 @@ final class VCCoordinator: CoordinatorProtocol {
         billEngine.users
     }
     
-    var latestCurrencies: LatestDto? {
-        billEngine.latest
+    var latestCurrencies: [String : Decimal]? {
+        billEngine.latest?.rates
     }
 
     lazy var storyboard: UIStoryboard = {

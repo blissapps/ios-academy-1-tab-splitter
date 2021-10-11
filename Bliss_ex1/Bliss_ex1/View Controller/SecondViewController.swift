@@ -81,8 +81,8 @@ extension SecondViewController: UITextFieldDelegate {
         if textField.text?.isEmpty == false {
             return true
         } else {
-            valueTextField.placeholder = "Insert the bill"
-            nameTextField.placeholder = "Insert the name"
+            valueTextField.placeholder = "insert_bill".localized
+            nameTextField.placeholder = "insert_name".localized
             return false
         }
     }
