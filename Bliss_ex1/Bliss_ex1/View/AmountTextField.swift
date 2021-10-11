@@ -29,7 +29,7 @@ public class AmountTextField: UITextField {
             _amount
         }
     }
-
+    
     private lazy var currencyButton: UIButton = {
         UIButton(type: .custom)
     }()
@@ -40,17 +40,21 @@ public class AmountTextField: UITextField {
     }
 
     private func commonInit() {
-        rightView = currencyButton
-        rightViewMode = .always
+        addSubview(currencyButton)
         currencyButton.frame = .init(x: 0, y: 0, width: 44, height: 44)
-        currencyButton.setTitleColor(.black, for: .normal)
+        currencyButton.addTarget(self, action: #selector(self.currencyButtonTouchUpInside), for: .touchUpInside)
         delegate = self
     }
 
     private func updateWithAmount(_ amount: AmountValue?) {
         text = amount.formatAmountForDisplay
         currencyButton.setTitle(amount?.currencyCode, for: .normal)
+        currencyButton.setTitleColor(.black, for: .normal)
         selectedCurrency = amount?.currencyCode ?? ""
+    }
+    
+    @objc func currencyButtonTouchUpInside() {
+        print(currencyButton)
     }
 }
 
