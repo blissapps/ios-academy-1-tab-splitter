@@ -17,6 +17,8 @@ class ViewController: UIViewController {
     @IBOutlet weak private var totalTextField: AmountTextField!
     @IBOutlet weak private var totalErrorLabel: UILabel!
     
+    @IBOutlet weak var addButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -26,6 +28,7 @@ class ViewController: UIViewController {
         totalTextField.placeholder = "amount_text_field_placeholder".localized
         totalTextField.amount = AmountValue(amount: 123.456, currencyCode: "EUR")
         totalTextField.amountTextFieldDelegate = self
+        
         self.dismissKeyboard()
     }
     
