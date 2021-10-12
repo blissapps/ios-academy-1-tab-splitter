@@ -55,6 +55,8 @@ public class AmountTextField: UITextField {
     
     @objc func currencyButtonTouchUpInside() {
         print(currencyButton)
+        let picker = CurrencyPickerView()
+        UIApplication.shared.keyWindow?.addSubview(picker.view)
     }
 }
 

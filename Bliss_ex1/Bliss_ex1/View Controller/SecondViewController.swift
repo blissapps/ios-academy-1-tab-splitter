@@ -23,6 +23,7 @@ class SecondViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        _ = view
         // Do any additional setup after loading the view.
         nameTextField.delegate = self
         valueTextField.delegate = self

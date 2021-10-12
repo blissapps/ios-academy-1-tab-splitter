@@ -17,6 +17,8 @@ class CurrencyPickerView: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        view = UIView(frame: CGRect.init(x: 0, y: 200, width: view.frame.width, height: 300))
         // Do any additional setup after loading the view.
         currencyPicker = UIPickerView.init(frame: CGRect.init(x: 0, y: 200, width: view.frame.width, height: 300))
         
