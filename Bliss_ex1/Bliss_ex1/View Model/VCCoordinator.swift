@@ -9,6 +9,7 @@ import Foundation
 import UIKit
 
 final class VCCoordinator: CoordinatorProtocol {
+    
     var billEngine: BillSpliterEngine
     var navigationController: UINavigationController
     var delegate: CoordinatorDelegate?
@@ -43,8 +44,8 @@ final class VCCoordinator: CoordinatorProtocol {
         selectedUser = nil
         selectedOption = nil
 
-        delegate?.updateRest(with: "\(billEngine.restAmount)€")
-        delegate?.updateTotal(with: "\(billEngine.billAmount)€")
+        delegate?.updateRest(with: "\(billEngine.restAmount)")
+        delegate?.updateTotal(with: "\(billEngine.amount?.amount)")
         delegate?.reloadData()
     }
 
@@ -93,6 +94,10 @@ final class VCCoordinator: CoordinatorProtocol {
             vc.coordinator = self
             vc.changeTitleButton()
         }
+    }
+    
+    func setCurrencyCode(_ currencyCode: String) {
+        billEngine.currencyChanged(newCurrency: currencyCode)
     }
     
     private func goToCurrencyPickerScreen() {

@@ -28,7 +28,7 @@ class ViewController: UIViewController {
         totalTextField.placeholder = "amount_text_field_placeholder".localized
         
         totalTextField.amount = AmountValue(amount: 0, currencyCode: "EUR")
-        
+        totalTextField.coordinator = coordinator
         totalTextField.amountTextFieldDelegate = self
         
         self.dismissKeyboard()

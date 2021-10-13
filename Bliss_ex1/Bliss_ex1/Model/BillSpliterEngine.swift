@@ -14,7 +14,11 @@ public class BillSpliterEngine {
     var latest: LatestDto?
    
     //MARK: - Private vars
-    public var billAmount: Decimal = 0 {
+    public var amount: AmountValue = AmountValue(amount: billAmount, currencyCode: EUR) {
+        amount?.amount =
+    }
+    
+    private var billAmount: Decimal = 0 {
         didSet {
             recalculate()
         }
@@ -82,4 +86,16 @@ public class BillSpliterEngine {
         restAmount = billAmount -  rest
     }
 
+    
+    //MARK: - CurrencyChanged
+
+    func currencyChanged(newCurrency: String) {
+        //=(valor atual/valor de coversão para a moeda do atual)*(valor conversao da nova moeda)
+        guard let prevValue = latest?.rates[amount.currencyCode],
+              let newValue = latest?.rates[newCurrency] else {
+            return
+        }
+        billAmount = (billAmount / prevValue)/newValue
+    }
 }
+

@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-public protocol AmountTextFieldDelegate: class {
+public protocol AmountTextFieldDelegate: AnyObject {
     func amountDidChange(from: AmountTextField, amount: AmountValue?)
 }
 
@@ -20,6 +20,7 @@ public class AmountTextField: UITextField {
 
     public var selectedCurrency: String = "" {
         didSet {
+            currencyButton.setTitle(selectedCurrency, for: .normal)
             print(selectedCurrency)
         }
     }
@@ -27,6 +28,7 @@ public class AmountTextField: UITextField {
     private var _amount: AmountValue?
     public var amount: AmountValue? {
         set {
+            
             _amount = newValue
             updateWithAmount(newValue)
         }
@@ -60,7 +62,7 @@ public class AmountTextField: UITextField {
     
     @objc func currencyButtonTouchUpInside() {
         currencyPickerView = CurrencyPickerView.showInKeyWindow()
-        currencyPickerView?.currencies = ["EUR": 0.1, "USD": 0.2]
+        currencyPickerView?.currencies = coordinator?.latestCurrencies
         currencyPickerView?.delegate = self
         //setup delegate
     }

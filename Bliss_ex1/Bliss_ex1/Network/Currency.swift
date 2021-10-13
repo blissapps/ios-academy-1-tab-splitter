@@ -40,6 +40,7 @@ public enum Currency {
   static public let privateKey = "372bf37d48588024455a61ad71f296a5"
     case latest
 }
+
 /*
  latest? access_key = YOUR_ACCESS_KEY
      & base = GBP
