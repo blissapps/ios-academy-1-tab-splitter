@@ -188,6 +188,7 @@
 				07655AFF2704AA5E005DFF09 /* LaunchScreen.storyboard */,
 				07655AFA2704AA58005DFF09 /* Main.storyboard */,
 				E2D7EC462710624E0039C7F8 /* AmountTextField.swift */,
+				075392152710A02C001803E1 /* CurrencyPickerView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -197,7 +198,6 @@
 			children = (
 				07655AF82704AA58005DFF09 /* ViewController.swift */,
 				07655B272704C90F005DFF09 /* SecondViewController.swift */,
-				075392152710A02C001803E1 /* CurrencyPickerView.swift */,
 			);
 			path = "View Controller";
 			sourceTree = "<group>";

@@ -14,10 +14,15 @@ public protocol AmountTextFieldDelegate: class {
 
 public class AmountTextField: UITextField {
     var coordinator: CoordinatorProtocol?
+    var currencyPickerView: CurrencyPickerView?
     
     public weak var amountTextFieldDelegate: AmountTextFieldDelegate?
 
-    public var selectedCurrency: String = ""
+    public var selectedCurrency: String = "" {
+        didSet {
+            print(selectedCurrency)
+        }
+    }
 
     private var _amount: AmountValue?
     public var amount: AmountValue? {
@@ -54,9 +59,10 @@ public class AmountTextField: UITextField {
     }
     
     @objc func currencyButtonTouchUpInside() {
-        print(currencyButton)
-        let picker = CurrencyPickerView()
-        UIApplication.shared.keyWindow?.addSubview(picker.view)
+        currencyPickerView = CurrencyPickerView.showInKeyWindow()
+        currencyPickerView?.currencies = ["EUR": 0.1, "USD": 0.2]
+        currencyPickerView?.delegate = self
+        //setup delegate
     }
 }
 
@@ -82,6 +88,16 @@ extension AmountTextField: UITextFieldDelegate {
         _amount = amount
         amountTextFieldDelegate?.amountDidChange(from: self, amount: amount)
         endEditing(true)
+    }
+}
+
+extension AmountTextField: CurrencyPickerViewDelegate {
+    func currencyPickerView(_: CurrencyPickerView, didSelectCurrency currency: String?) {
+        guard let currency = currency else {
+            return
+        }
+
+        selectedCurrency = currency
     }
 }
 

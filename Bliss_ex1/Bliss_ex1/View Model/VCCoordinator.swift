@@ -96,13 +96,6 @@ final class VCCoordinator: CoordinatorProtocol {
     }
     
     private func goToCurrencyPickerScreen() {
-        guard let vc = storyboard.instantiateViewController(withIdentifier: "CurrencyPickerViewController") as? CurrencyPickerView,
-              let originVC = navigationController.topViewController as? ViewController else {
-            return
-        }
         
-        navigationController.pushViewController(vc, animated: true)
-        vc.coordinator = self
-        vc.currencies = originVC.currencies
     }
 }
