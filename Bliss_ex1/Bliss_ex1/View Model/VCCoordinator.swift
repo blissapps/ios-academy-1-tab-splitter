@@ -99,8 +99,8 @@ final class VCCoordinator: CoordinatorProtocol {
     func setCurrencyCode(_ currencyCode: String) {
         billEngine.currencyChanged(newCurrency: currencyCode)
         
-        delegate?.updateRest(with: "\(billEngine.restAmount)")
-        delegate?.updateTotal(with: "\(billEngine.billAmount.amount)")
+        delegate?.updateRest(with: "\(billEngine.restAmount.displayAsCurrencyFormat)")
+        delegate?.updateTotal(with: "\(billEngine.billAmount.amount.displayAsCurrencyFormat)")
         delegate?.reloadData()
     }
     

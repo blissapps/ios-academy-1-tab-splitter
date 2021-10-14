@@ -90,7 +90,7 @@ public class BillSpliterEngine {
               let newValue = latest?.rates[newCurrency] else {
             return
         }
-        billAmount.amount = (billAmount.amount / prevValue)/newValue
+        billAmount.amount = (billAmount.amount / prevValue)*newValue
         recalculate()
     }
 }
