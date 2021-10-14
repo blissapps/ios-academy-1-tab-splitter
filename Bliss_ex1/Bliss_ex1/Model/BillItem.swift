@@ -19,4 +19,4 @@ public struct BillItem: Equatable {
 public struct AmountValue: Equatable {
     var amount: Decimal
     var currencyCode: String
-  }
+}

@@ -14,11 +14,8 @@ public class BillSpliterEngine {
     var latest: LatestDto?
    
     //MARK: - Private vars
-    public var amount: AmountValue = AmountValue(amount: billAmount, currencyCode: EUR) {
-        amount?.amount =
-    }
-    
-    private var billAmount: Decimal = 0 {
+  
+    public var billAmount = AmountValue(amount: 0, currencyCode: "EUR") {
         didSet {
             recalculate()
         }
@@ -41,7 +38,7 @@ public class BillSpliterEngine {
 
     func reset() {
         users = []
-        billAmount = 0
+        billAmount.amount = 0
     }
      
     func saveUser(_ user: BillItem) {
@@ -68,10 +65,10 @@ public class BillSpliterEngine {
 
         let numberOfUnchangedUser = Decimal(users.count - changedUsers.count)
         
-        if (billAmount - changedValue) < 0 {
+        if (billAmount.amount - changedValue) < 0 {
             valueAmount = 0
         } else {
-            valueAmount = (billAmount - changedValue) / numberOfUnchangedUser
+            valueAmount = (billAmount.amount - changedValue) / numberOfUnchangedUser
         }
         
         for (index, user) in users.enumerated() {
@@ -83,19 +80,18 @@ public class BillSpliterEngine {
         //update remainder
         var rest: Decimal = 0
         users.forEach{ rest += ($0.value?.amount ?? 0)}
-        restAmount = billAmount -  rest
+        restAmount = billAmount.amount -  rest
     }
 
     
     //MARK: - CurrencyChanged
-
     func currencyChanged(newCurrency: String) {
-        //=(valor atual/valor de coversão para a moeda do atual)*(valor conversao da nova moeda)
-        guard let prevValue = latest?.rates[amount.currencyCode],
+        guard let prevValue = latest?.rates[billAmount.currencyCode],
               let newValue = latest?.rates[newCurrency] else {
             return
         }
-        billAmount = (billAmount / prevValue)/newValue
+        billAmount.amount = (billAmount.amount / prevValue)/newValue
+        recalculate()
     }
 }
 
