@@ -36,7 +36,7 @@ final class VCCoordinator: CoordinatorProtocol {
     func selectUser(at index: Int) {
         selectedUser = billEngine.users[index]
         selectedOption = .save
-        pushManageUserViewController()
+        pushManageUserViewController(user: selectedUser)
     }
 
     func reset() {
@@ -55,7 +55,7 @@ final class VCCoordinator: CoordinatorProtocol {
 
     func add() {
         selectedOption = .add
-        pushManageUserViewController()
+        pushManageUserViewController(user: nil)
     }
 
     func back() {
@@ -88,11 +88,12 @@ final class VCCoordinator: CoordinatorProtocol {
         }
     }
 
-    private func pushManageUserViewController() {
+    private func pushManageUserViewController(user: BillItem?) {
         if let vc = storyboard.instantiateViewController(withIdentifier: "SecondViewController") as? SecondViewController {
             navigationController.pushViewController(vc, animated: true)
             vc.coordinator = self
             vc.changeTitleButton()
+            vc.user = user
         }
     }
     

@@ -21,6 +21,12 @@ class SecondViewController: UIViewController {
     @IBOutlet weak private var valueTextField: AmountTextField!
     @IBOutlet weak private var saveOrAdd: UIButton!
     
+    var user: BillItem? {
+        didSet {
+            configScreen()
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -30,6 +36,11 @@ class SecondViewController: UIViewController {
         valueTextField.delegate = self
         
         dismissKeyboard()
+    }
+    
+    private func configScreen() {
+        nameTextField.text = user?.name
+        valueTextField.text = user?.value?.amount.description
     }
     
     func changeTitleButton() {
@@ -68,8 +79,10 @@ class SecondViewController: UIViewController {
             user.changedUser = nilValue
             coordinator?.saveUser(user)
         }
+        user = nil
         coordinator?.back()
     }
+    
 }
 
 //MARK: - UITextFieldDelegate

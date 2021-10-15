@@ -96,7 +96,7 @@ extension ViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         let user = coordinator?.users[indexPath.row]
         cell.textLabel?.text = user?.name
-        cell.detailTextLabel?.text = "\((user?.value?.amount ?? 0).description)"
+        cell.detailTextLabel?.text = "\((user?.value?.amount ?? 0).description)\(user?.value?.currencyCode ?? "")"
         return cell
     }
     
