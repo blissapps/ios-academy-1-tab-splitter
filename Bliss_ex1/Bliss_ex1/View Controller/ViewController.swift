@@ -12,18 +12,80 @@ class ViewController: UIViewController {
     
     var currencies: [String:Decimal] = [:]
     
-    @IBOutlet weak private var tableView: UITableView!
-    @IBOutlet weak private var restLabel: UILabel!
-    @IBOutlet weak private var totalTextField: AmountTextField!
-    @IBOutlet weak private var totalErrorLabel: UILabel!
+    private var tableView: UITableView = {
+        let tableView = UITableView()
+        return tableView
+    }()
     
-    @IBOutlet weak var addButton: UIButton!
+    private var restLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .secondaryLabel
+        label.font = UIFont.systemFont(ofSize: 33)
+        return label
+    }()
+    
+    private var vStackView: UIStackView = {
+       let stackView = UIStackView()
+        stackView.axis = .vertical
+        stackView.spacing = 0
+        stackView.alignment = .fill
+        stackView.distribution = .fill
+        return stackView
+    }()
+    
+    private var totalTextField: AmountTextField = {
+        let textField = AmountTextField()
+        textField.font = UIFont.systemFont(ofSize: 48)
+        return textField
+    }()
+    
+    private var totalErrorLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .red
+        label.font = UIFont.systemFont(ofSize: 18)
+        return label
+    }()
+    
+    private lazy var addButton: UIButton = {
+        let button = UIButton(type: .custom)
+        button.setTitle("add_button_title".localized, for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 18)
+        return button
+    }()
+    
+    private lazy var restartButton: UIButton = {
+        let button = UIButton(type: .custom)
+        button.setTitle("Restart", for: .normal)
+        button.titleLabel?.font = UIFont(name: "AccentColor", size: 20)
+        return button
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        navigationItem.title = "Tab Splitter"
+        
+        view.addSubview(tableView)
+        view.addSubview(vStackView)
+        
+        vStackView.addArrangedSubview(totalTextField)
+        vStackView.addArrangedSubview(restLabel)
+        vStackView.addArrangedSubview(totalErrorLabel)
+        
+        addButton.addTarget(self, action: #selector(self.addButtonTouchUpInside), for: .touchUpInside)
+        restartButton.addTarget(self, action: #selector(self.restartButtonTouchUpInside), for: .touchUpInside)
+        
+        NSLayoutConstraint.activate([
+            tableView.topAnchor.constraint(equalTo: view.topAnchor),
+            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+        ])
+        
         // Do any additional setup after loading the view.
         tableView.delegate = self
         tableView.dataSource = self
+        
         totalErrorLabel.isHidden = true
         totalTextField.placeholder = "amount_text_field_placeholder".localized
         
@@ -31,16 +93,16 @@ class ViewController: UIViewController {
         totalTextField.coordinator = coordinator
         totalTextField.amountTextFieldDelegate = self
         
+        
         self.dismissKeyboard()
     }
     
-    @IBAction func restartButton(_ sender: Any) {
+    @objc func restartButtonTouchUpInside() {
         coordinator?.reset()
     }
     
-    @IBAction func addButton(_ sender: Any) {
+    @objc func addButtonTouchUpInside() {
         coordinator?.add()
-        
     }
 }
 

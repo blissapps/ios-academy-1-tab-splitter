@@ -17,8 +17,20 @@ class SecondViewController: UIViewController {
 
     var coordinator: CoordinatorProtocol?
     
-    @IBOutlet weak private var nameTextField: UITextField!
-    @IBOutlet weak private var valueTextField: AmountTextField!
+    private var nameTextField: UITextField = {
+        let textField = UITextField()
+        textField.font = UIFont.systemFont(ofSize: 16)
+        textField.placeholder = "insert_name".localized
+        return textField
+    }()
+
+    @IBOutlet weak private var valueTextField: AmountTextField = {
+        let textField = AmountTextField()
+        textField.font = UIFont.systemFont(ofSize: 16)
+        textField.placeholder = "insert_value".localized
+        return textField
+    }()
+    
     @IBOutlet weak private var saveOrAdd: UIButton!
     
     var user: BillItem? {

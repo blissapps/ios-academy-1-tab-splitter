@@ -40,6 +40,10 @@ public class AmountTextField: UITextField {
     private lazy var currencyButton: UIButton = {
         UIButton(type: .custom)
     }()
+    
+    public override init(frame: CGRect) {
+        
+    }
 
     public required init?(coder: NSCoder) {
         super.init(coder: coder)

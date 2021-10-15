@@ -55,28 +55,27 @@
                                 </prototypes>
                             </tableView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="DLI-Nm-B47">
-                                <rect key="frame" x="139.5" y="269.5" width="41" height="61"/>
+                                <rect key="frame" x="31" y="240" width="258.5" height="120"/>
                                 <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="0€" placeholder="Insert the bill" textAlignment="center" minimumFontSize="35" translatesAutoresizingMaskIntoConstraints="NO" id="LdU-Qz-PqV" customClass="AmountTextField" customModule="Bliss_ex1" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="258.5" height="59"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="48"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
+                                    </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0€" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="21" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wyg-aC-AjO">
-                                        <rect key="frame" x="0.0" y="0.0" width="41" height="39.5"/>
+                                        <rect key="frame" x="0.0" y="59" width="258.5" height="39.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="33"/>
                                         <color key="textColor" systemColor="opaqueSeparatorColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0€" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="21" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iQ8-a6-ChV">
-                                        <rect key="frame" x="0.0" y="39.5" width="41" height="21.5"/>
+                                        <rect key="frame" x="0.0" y="98.5" width="258.5" height="21.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                         <color key="textColor" systemColor="systemRedColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
                             </stackView>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="0€" placeholder="Insert the bill" textAlignment="center" minimumFontSize="35" translatesAutoresizingMaskIntoConstraints="NO" id="LdU-Qz-PqV" customClass="AmountTextField" customModule="Bliss_ex1" customModuleProvider="target">
-                                <rect key="frame" x="30" y="210" width="258.5" height="59"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="48"/>
-                                <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
-                            </textField>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
