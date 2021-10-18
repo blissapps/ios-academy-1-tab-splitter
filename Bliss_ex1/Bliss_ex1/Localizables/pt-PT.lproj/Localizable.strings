@@ -5,7 +5,7 @@
   Created by Tiago Janela on 10/6/21.
   
 */
-
+"amount_text_field_placeholder" = "Insere a conta";
 "add_button_title" = "Adicionar";
 "save_button_title" = "Salvar";
 "bill_amount_invalid_error_text" = "Valor inválido";

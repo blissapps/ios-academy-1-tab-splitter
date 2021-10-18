@@ -69,6 +69,8 @@ class ViewController: UIViewController {
         view.addSubview(tableView)
         view.addSubview(vStackView)
         
+        view.backgroundColor = .white
+        
         vStackView.addArrangedSubview(totalTextField)
         vStackView.addArrangedSubview(restLabel)
         vStackView.addArrangedSubview(totalErrorLabel)
@@ -76,12 +78,19 @@ class ViewController: UIViewController {
         addButton.addTarget(self, action: #selector(self.addButtonTouchUpInside), for: .touchUpInside)
         restartButton.addTarget(self, action: #selector(self.restartButtonTouchUpInside), for: .touchUpInside)
         
-        NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: view.topAnchor),
-            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-        ])
+        tableView.snp.makeConstraints { make in
+            make.leading.trailing.top.equalToSuperview()
+        }
+        
+        totalTextField.snp.makeConstraints {make in
+            make.leading.trailing.width.centerX.equalToSuperview()
+        }
+        
+        vStackView.snp.makeConstraints { make in
+            make.height.equalTo(250)
+            make.leading.trailing.bottom.equalToSuperview()
+            make.top.equalTo(tableView.snp.bottom)
+        }
         
         // Do any additional setup after loading the view.
         tableView.delegate = self
