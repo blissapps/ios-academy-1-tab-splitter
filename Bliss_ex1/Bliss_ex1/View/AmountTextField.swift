@@ -41,10 +41,16 @@ public class AmountTextField: UITextField {
         UIButton(type: .custom)
     }()
     
-    public override init(frame: CGRect) {
-        
+    public init() {
+        super.init(frame: .zero)
+        commonInit()
     }
-
+    
+    public override init(frame: CGRect) {
+        super.init(frame: frame)
+        commonInit()
+    }
+    
     public required init?(coder: NSCoder) {
         super.init(coder: coder)
         commonInit()

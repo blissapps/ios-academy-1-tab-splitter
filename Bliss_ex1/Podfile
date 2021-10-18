@@ -8,7 +8,8 @@ target 'Bliss_ex1' do
   # Pods for Bliss_ex1
     
   pod 'Moya', '~> 15.0'
-    
+  pod 'SnapKit', '~> 5.0.0'
+  
   target 'Bliss_ex1Tests' do
     inherit! :search_paths
     # Pods for testing
