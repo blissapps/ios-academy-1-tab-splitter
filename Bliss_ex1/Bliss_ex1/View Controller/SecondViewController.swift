@@ -24,14 +24,24 @@ class SecondViewController: UIViewController {
         return textField
     }()
 
-    @IBOutlet weak private var valueTextField: AmountTextField = {
+    private var valueTextField: AmountTextField = {
         let textField = AmountTextField()
         textField.font = UIFont.systemFont(ofSize: 16)
         textField.placeholder = "insert_value".localized
         return textField
     }()
     
-    @IBOutlet weak private var saveOrAdd: UIButton!
+    private lazy var saveOrAdd: UIButton = {
+        let button = UIButton(type: .custom)
+        button.setTitle("add_button_title".localized, for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 22)
+        return button
+    }()
+    
+    private lazy var backButton: UIBarButtonItem = {
+        let button = self.navigationController?.navigationBar.topItem?.backBarButtonItem
+        return button!
+    }()
     
     var user: BillItem? {
         didSet {
@@ -46,6 +56,9 @@ class SecondViewController: UIViewController {
 
         nameTextField.delegate = self
         valueTextField.delegate = self
+        
+        saveOrAdd.addTarget(self, action: #selector(self.didTapButton), for: .touchUpInside)
+        backButton.perform(#selector(self.back))
         
         dismissKeyboard()
     }
@@ -64,11 +77,11 @@ class SecondViewController: UIViewController {
         }
     }
     
-    @IBAction func back(_ sender: Any) {
+    @objc func back(_ sender: Any) {
         coordinator?.back()
     }
     
-    @IBAction func didTapButton(_ sender: Any) {
+    @objc func didTapButton(_ sender: Any) {
         var nilValue = false
         
         if valueTextField.text != "" {
