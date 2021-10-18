@@ -22,6 +22,7 @@ class ViewController: UIViewController {
         let label = UILabel()
         label.textColor = .secondaryLabel
         label.font = UIFont.systemFont(ofSize: 33)
+        label.textAlignment = .center
         return label
     }()
     
@@ -37,6 +38,7 @@ class ViewController: UIViewController {
     private var totalTextField: AmountTextField = {
         let textField = AmountTextField()
         textField.font = UIFont.systemFont(ofSize: 48)
+        textField.textAlignment = .center
         return textField
     }()
     
@@ -83,13 +85,15 @@ class ViewController: UIViewController {
         }
         
         totalTextField.snp.makeConstraints {make in
-            make.leading.trailing.width.centerX.equalToSuperview()
+            make.height.equalTo(120)
+            make.leading.trailing.equalToSuperview()
         }
         
         vStackView.snp.makeConstraints { make in
             make.height.equalTo(250)
-            make.leading.trailing.bottom.equalToSuperview()
+            make.leading.trailing.bottom.equalToSuperview().inset(40)
             make.top.equalTo(tableView.snp.bottom)
+     
         }
         
         // Do any additional setup after loading the view.

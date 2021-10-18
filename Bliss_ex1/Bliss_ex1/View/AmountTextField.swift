@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import SnapKit
 
 public protocol AmountTextFieldDelegate: AnyObject {
     func amountDidChange(from: AmountTextField, amount: AmountValue?)
@@ -55,10 +56,16 @@ public class AmountTextField: UITextField {
         super.init(coder: coder)
         commonInit()
     }
+    
+    override public func layoutSubviews() {
+        super.layoutSubviews()
+        //print(bounds)
+        currencyButton.frame = CGRect(x: 0, y: 0, width: 0.3 * self.bounds.width, height: self.bounds.height)
+    }
 
     private func commonInit() {
-        addSubview(currencyButton)
-        currencyButton.frame = .init(x: 0, y: 0, width: 44, height: 44)
+        leftView = currencyButton
+
         currencyButton.addTarget(self, action: #selector(self.currencyButtonTouchUpInside), for: .touchUpInside)
         delegate = self
     }
@@ -84,7 +91,6 @@ extension AmountTextField: UITextFieldDelegate {
     }
 
     public func textFieldDidBeginEditing(_ textField: UITextField) {
-        //textField.text?.removeAll(where: { $0 == "€" })
     }
 
     public func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
