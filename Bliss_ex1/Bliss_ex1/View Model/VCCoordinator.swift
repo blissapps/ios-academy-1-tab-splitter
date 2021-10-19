@@ -89,12 +89,11 @@ final class VCCoordinator: CoordinatorProtocol {
     }
 
     private func pushManageUserViewController(user: BillItem?) {
-        if let vc = storyboard.instantiateViewController(withIdentifier: "SecondViewController") as? SecondViewController {
+        let vc = SecondViewController()
             navigationController.pushViewController(vc, animated: true)
             vc.coordinator = self
             vc.changeTitleButton()
             vc.user = user
-        }
     }
     
     func setCurrencyCode(_ currencyCode: String) {
@@ -106,6 +105,5 @@ final class VCCoordinator: CoordinatorProtocol {
     }
     
     private func goToCurrencyPickerScreen() {
-        
     }
 }

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SnapKit
 
 extension String {
     var localized: String {
@@ -17,6 +18,16 @@ class SecondViewController: UIViewController {
 
     var coordinator: CoordinatorProtocol?
     
+    private var vStackView: UIStackView = {
+       let stackView = UIStackView()
+        stackView.axis = .vertical
+        stackView.spacing = 0
+        stackView.alignment = .fill
+        stackView.distribution = .fillEqually
+    
+        return stackView
+    }()
+    
     private var nameTextField: UITextField = {
         let textField = UITextField()
         textField.font = UIFont.systemFont(ofSize: 16)
@@ -27,7 +38,7 @@ class SecondViewController: UIViewController {
     private var valueTextField: AmountTextField = {
         let textField = AmountTextField()
         textField.font = UIFont.systemFont(ofSize: 16)
-        textField.placeholder = "insert_value".localized
+        textField.placeholder = "insert_bill".localized
         return textField
     }()
     
@@ -35,12 +46,14 @@ class SecondViewController: UIViewController {
         let button = UIButton(type: .custom)
         button.setTitle("add_button_title".localized, for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 22)
+        button.setTitleColor(.systemBlue, for: .normal)
+        button.frame = CGRect(x: 0, y: 0, width: 100, height: 44)
         return button
     }()
     
-    private lazy var backButton: UIBarButtonItem = {
+    private lazy var backButton: UIBarButtonItem? = {
         let button = self.navigationController?.navigationBar.topItem?.backBarButtonItem
-        return button!
+        return button
     }()
     
     var user: BillItem? {
@@ -51,15 +64,34 @@ class SecondViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
+        navigationItem.title = saveOrAdd.currentTitle
+        
+        view.addSubview(vStackView)
+        view.addSubview(saveOrAdd)
+        
+        view.backgroundColor = .white
+        
+        vStackView.addArrangedSubview(nameTextField)
+        vStackView.addArrangedSubview(valueTextField)
+        
         valueTextField.coordinator = coordinator
 
         nameTextField.delegate = self
         valueTextField.delegate = self
         
         saveOrAdd.addTarget(self, action: #selector(self.didTapButton), for: .touchUpInside)
-        backButton.perform(#selector(self.back))
+        backButton?.perform(#selector(self.back))
         
+        vStackView.snp.makeConstraints { make in
+            make.leading.trailing.equalToSuperview().offset(30)
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+        }
+        
+        saveOrAdd.snp.makeConstraints{make in
+            make.top.equalTo(vStackView.snp.bottom)
+            make.leading.equalTo(150)
+        }
         dismissKeyboard()
     }
     
@@ -107,7 +139,6 @@ class SecondViewController: UIViewController {
         user = nil
         coordinator?.back()
     }
-    
 }
 
 //MARK: - UITextFieldDelegate

@@ -23,7 +23,6 @@ public class AmountTextField: UITextField {
         didSet {
             currencyButton.setTitle(selectedCurrency, for: .normal)
             coordinator?.setCurrencyCode(selectedCurrency)
-            print(selectedCurrency)
         }
     }
 
@@ -59,13 +58,28 @@ public class AmountTextField: UITextField {
     
     override public func layoutSubviews() {
         super.layoutSubviews()
-        //print(bounds)
-        currencyButton.frame = CGRect(x: 0, y: 0, width: 0.3 * self.bounds.width, height: self.bounds.height)
+    }
+    
+    override public var intrinsicContentSize: CGSize{
+        let size = super.intrinsicContentSize
+        print(size)
+        return size
     }
 
+    public override func rightViewRect(forBounds bounds: CGRect) -> CGRect {
+        let buttonSize = rightView?.intrinsicContentSize ?? .zero
+       
+        return CGRect(x: frame.width - buttonSize.width, y: 0, width: buttonSize.width, height: buttonSize.height)
+    }
+    
+    public override func textRect(forBounds bounds: CGRect) -> CGRect {
+        let buttonSize = rightView?.intrinsicContentSize ?? .zero
+        return CGRect(x: 0, y: 0, width: frame.width - buttonSize.width, height: frame.height)
+    }
+    
     private func commonInit() {
-        leftView = currencyButton
-
+        rightView = currencyButton
+        rightViewMode = .always
         currencyButton.addTarget(self, action: #selector(self.currencyButtonTouchUpInside), for: .touchUpInside)
         delegate = self
     }
@@ -81,7 +95,6 @@ public class AmountTextField: UITextField {
         currencyPickerView = CurrencyPickerView.showInKeyWindow()
         currencyPickerView?.currencies = coordinator?.latestCurrencies
         currencyPickerView?.delegate = self
-        //setup delegate
     }
 }
 
@@ -114,7 +127,6 @@ extension AmountTextField: CurrencyPickerViewDelegate {
         guard let currency = currency else {
             return
         }
-
         selectedCurrency = currency
     }
 }

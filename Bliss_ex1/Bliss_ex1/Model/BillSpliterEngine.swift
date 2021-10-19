@@ -14,7 +14,6 @@ public class BillSpliterEngine {
     var latest: LatestDto?
    
     //MARK: - Private vars
-  
     public var billAmount = AmountValue(amount: 0, currencyCode: "EUR") {
         didSet {
             recalculate()
@@ -53,7 +52,6 @@ public class BillSpliterEngine {
         }
         users.replace(id: user.id, user: user)
     }
-    
 
     //MARK: - Private methods
     private func recalculate() {
@@ -82,7 +80,6 @@ public class BillSpliterEngine {
         users.forEach{ rest += ($0.value?.amount ?? 0)}
         restAmount = billAmount.amount -  rest
     }
-
     
     //MARK: - CurrencyChanged
     func currencyChanged(newCurrency: String) {
@@ -94,4 +91,3 @@ public class BillSpliterEngine {
         recalculate()
     }
 }
-

@@ -53,6 +53,8 @@ class ViewController: UIViewController {
         let button = UIButton(type: .custom)
         button.setTitle("add_button_title".localized, for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 18)
+        button.setTitleColor(.systemBlue, for: .normal)
+        button.frame = CGRect(x: 0, y: 0, width: 100, height: 44)
         return button
     }()
     
@@ -73,6 +75,12 @@ class ViewController: UIViewController {
         
         view.backgroundColor = .white
         
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: #selector(restartButtonTouchUpInside))
+        
+        tableView.tableFooterView = addButton
+        
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "tableViewCell")
+        
         vStackView.addArrangedSubview(totalTextField)
         vStackView.addArrangedSubview(restLabel)
         vStackView.addArrangedSubview(totalErrorLabel)
@@ -81,7 +89,8 @@ class ViewController: UIViewController {
         restartButton.addTarget(self, action: #selector(self.restartButtonTouchUpInside), for: .touchUpInside)
         
         tableView.snp.makeConstraints { make in
-            make.leading.trailing.top.equalToSuperview()
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+            make.leading.trailing.equalToSuperview()
         }
         
         totalTextField.snp.makeConstraints {make in
@@ -93,10 +102,8 @@ class ViewController: UIViewController {
             make.height.equalTo(250)
             make.leading.trailing.bottom.equalToSuperview().inset(40)
             make.top.equalTo(tableView.snp.bottom)
-     
         }
         
-        // Do any additional setup after loading the view.
         tableView.delegate = self
         tableView.dataSource = self
         
@@ -106,7 +113,6 @@ class ViewController: UIViewController {
         totalTextField.amount = AmountValue(amount: 0, currencyCode: "EUR")
         totalTextField.coordinator = coordinator
         totalTextField.amountTextFieldDelegate = self
-        
         
         self.dismissKeyboard()
     }
@@ -165,17 +171,22 @@ extension ViewController: UITableViewDelegate {
 extension ViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return coordinator?.users.count ?? 0
-        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+
+        var cell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "tableViewCell", for: indexPath)
+        if cell == nil || cell.detailTextLabel == nil {
+            cell = UITableViewCell(style: .subtitle, reuseIdentifier: "tableViewCell")
+        }
+        
         let user = coordinator?.users[indexPath.row]
         cell.textLabel?.text = user?.name
         cell.detailTextLabel?.text = "\((user?.value?.amount ?? 0).description)\(user?.value?.currencyCode ?? "")"
+        cell.textLabel?.textColor = .black
+        cell.detailTextLabel?.textColor = .black
         return cell
     }
-    
 }
 
 //MARK: - UITextFieldDelegate
@@ -217,6 +228,3 @@ func dismissKeyboard() {
        view.endEditing(true)
     }
 }
-
-
-

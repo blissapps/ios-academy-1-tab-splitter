@@ -36,5 +36,3 @@ protocol CoordinatorProtocol {
     func back()
     func reset()
 }
-
-
