@@ -45,12 +45,12 @@ final class VCCoordinator: CoordinatorProtocol {
         selectedOption = nil
 
         delegate?.updateRest(with: "\(billEngine.restAmount)")
-        delegate?.updateTotal(with: "\(billEngine.billAmount.amount)")
+        delegate?.updateTotal(with: "\(billEngine.billAmount.value)")
         delegate?.reloadData()
     }
 
     func setBill(bill: Decimal) {
-        billEngine.billAmount.amount = bill
+        billEngine.billAmount.value = bill
     }
 
     func add() {
@@ -72,9 +72,9 @@ final class VCCoordinator: CoordinatorProtocol {
         selectedOption = nil
     }
 
-    func setBillAmount(_ value: Decimal) {
-        billEngine.billAmount.amount = value
-        delegate?.updateTotal(with: billEngine.billAmount.amount.displayAsCurrencyFormat)
+    func setBillAmount(_ amount: AmountValue) {
+        billEngine.billAmount.value = amount.value
+        delegate?.updateTotal(with: billEngine.billAmount.value.displayAsCurrencyFormat)
         delegate?.updateRest(with: billEngine.restAmount.displayAsCurrencyFormat)
     }
 
@@ -100,7 +100,7 @@ final class VCCoordinator: CoordinatorProtocol {
         billEngine.currencyChanged(newCurrency: currencyCode)
         
         delegate?.updateRest(with: "\(billEngine.restAmount.displayAsCurrencyFormat)")
-        delegate?.updateTotal(with: "\(billEngine.billAmount.amount.displayAsCurrencyFormat)")
+        delegate?.updateTotal(with: "\(billEngine.billAmount.value.displayAsCurrencyFormat)")
         delegate?.reloadData()
     }
     

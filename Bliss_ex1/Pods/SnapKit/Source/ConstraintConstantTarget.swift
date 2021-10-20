@@ -172,28 +172,28 @@ extension ConstraintConstantTarget {
         }
         
         #if os(iOS) || os(tvOS)
-            if #available(iOS 11.0, tvOS 11.0, *), let value = self as? ConstraintDirectionalInsets {
+            if #available(iOS 11.0, tvOS 11.0, *), let amount = self as? ConstraintDirectionalInsets {
                 switch layoutAttribute {
                 case .left, .leftMargin:
-                  return (ConstraintConfig.interfaceLayoutDirection == .leftToRight) ? value.leading : value.trailing
+                  return (ConstraintConfig.interfaceLayoutDirection == .leftToRight) ? amount.leading : amount.trailing
                 case .top, .topMargin, .firstBaseline:
-                    return value.top
+                    return amount.top
                 case .right, .rightMargin:
-                  return (ConstraintConfig.interfaceLayoutDirection == .leftToRight) ? -value.trailing : -value.leading
+                  return (ConstraintConfig.interfaceLayoutDirection == .leftToRight) ? -amount.trailing : -amount.leading
                 case .bottom, .bottomMargin, .lastBaseline:
-                    return -value.bottom
+                    return -amount.bottom
                 case .leading, .leadingMargin:
-                    return value.leading
+                    return amount.leading
                 case .trailing, .trailingMargin:
-                    return -value.trailing
+                    return -amount.trailing
                 case .centerX, .centerXWithinMargins:
-                    return (value.leading - value.trailing) / 2
+                    return (amount.leading - amount.trailing) / 2
                 case .centerY, .centerYWithinMargins:
-                    return (value.top - value.bottom) / 2
+                    return (amount.top - amount.bottom) / 2
                 case .width:
-                    return -(value.leading + value.trailing)
+                    return -(amount.leading + amount.trailing)
                 case .height:
-                    return -(value.top + value.bottom)
+                    return -(amount.top + amount.bottom)
                 case .notAnAttribute:
                     return 0.0
                 #if swift(>=5.0)

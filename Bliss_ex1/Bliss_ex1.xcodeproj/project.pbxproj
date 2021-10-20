@@ -19,6 +19,8 @@
 		0765C9FD2705B794000B4E44 /* BillItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0765C9FC2705B794000B4E44 /* BillItem.swift */; };
 		0765CA072705E18F000B4E44 /* CoordinatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0765CA062705E18F000B4E44 /* CoordinatorProtocol.swift */; };
 		0765CA092705F92C000B4E44 /* VCCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0765CA082705F92C000B4E44 /* VCCoordinator.swift */; };
+		07A6B41327205D6800566EAA /* AmountValue+Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A6B41227205D6800566EAA /* AmountValue+Operators.swift */; };
+		07A6B41527205DB900566EAA /* AmountValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A6B41427205DB900566EAA /* AmountValue.swift */; };
 		07D40B8C2707179D000B88A2 /* Double+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D40B8B2707179D000B88A2 /* Double+Extensions.swift */; };
 		0CCCAD011A51D1256AFAD62E /* Pods_Bliss_ex1.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E807D26CA513CA1DFAE96AFC /* Pods_Bliss_ex1.framework */; };
 		5F1704B0270B3C0800564DFC /* BillSpliterEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F1704AF270B3C0800564DFC /* BillSpliterEngine.swift */; };
@@ -66,6 +68,8 @@
 		0765C9FC2705B794000B4E44 /* BillItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillItem.swift; sourceTree = "<group>"; };
 		0765CA062705E18F000B4E44 /* CoordinatorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatorProtocol.swift; sourceTree = "<group>"; };
 		0765CA082705F92C000B4E44 /* VCCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCCoordinator.swift; sourceTree = "<group>"; };
+		07A6B41227205D6800566EAA /* AmountValue+Operators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AmountValue+Operators.swift"; sourceTree = "<group>"; };
+		07A6B41427205DB900566EAA /* AmountValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmountValue.swift; sourceTree = "<group>"; };
 		07D40B8B2707179D000B88A2 /* Double+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Extensions.swift"; sourceTree = "<group>"; };
 		1F8E37519ADC0F761306BDD0 /* Pods-Bliss_ex1Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bliss_ex1Tests.release.xcconfig"; path = "Target Support Files/Pods-Bliss_ex1Tests/Pods-Bliss_ex1Tests.release.xcconfig"; sourceTree = "<group>"; };
 		5F1704AF270B3C0800564DFC /* BillSpliterEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillSpliterEngine.swift; sourceTree = "<group>"; };
@@ -201,6 +205,7 @@
 			children = (
 				0765C9FC2705B794000B4E44 /* BillItem.swift */,
 				5F1704AF270B3C0800564DFC /* BillSpliterEngine.swift */,
+				07A6B41427205DB900566EAA /* AmountValue.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -228,6 +233,7 @@
 				07D40B8B2707179D000B88A2 /* Double+Extensions.swift */,
 				E2FCA0C1270B68340039709C /* BillItem+ArrayExtension.swift */,
 				E249DC28270DB9480054CCC7 /* DecimalParser.swift */,
+				07A6B41227205D6800566EAA /* AmountValue+Operators.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -507,8 +513,10 @@
 				07655B282704C90F005DFF09 /* SecondViewController.swift in Sources */,
 				5F1704B0270B3C0800564DFC /* BillSpliterEngine.swift in Sources */,
 				07655AF92704AA58005DFF09 /* ViewController.swift in Sources */,
+				07A6B41527205DB900566EAA /* AmountValue.swift in Sources */,
 				E2D7EC472710624E0039C7F8 /* AmountTextField.swift in Sources */,
 				0765CA072705E18F000B4E44 /* CoordinatorProtocol.swift in Sources */,
+				07A6B41327205D6800566EAA /* AmountValue+Operators.swift in Sources */,
 				E249DC29270DB9480054CCC7 /* DecimalParser.swift in Sources */,
 				0765CA092705F92C000B4E44 /* VCCoordinator.swift in Sources */,
 				0765C9FD2705B794000B4E44 /* BillItem.swift in Sources */,

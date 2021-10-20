@@ -110,7 +110,7 @@ class ViewController: UIViewController {
         totalErrorLabel.isHidden = true
         totalTextField.placeholder = "amount_text_field_placeholder".localized
         
-        totalTextField.amount = AmountValue(amount: 0, currencyCode: "EUR")
+        totalTextField.amount = AmountValue(value: 0, currencyCode: "EUR")
         totalTextField.coordinator = coordinator
         totalTextField.amountTextFieldDelegate = self
         
@@ -134,7 +134,7 @@ extension ViewController: AmountTextFieldDelegate {
             print("no amount")
             return
         }
-        coordinator?.setBillAmount(amount.amount)
+        coordinator?.setBillAmount(amount.value)
     }
 }
 
@@ -182,7 +182,7 @@ extension ViewController: UITableViewDataSource {
         
         let user = coordinator?.users[indexPath.row]
         cell.textLabel?.text = user?.name
-        cell.detailTextLabel?.text = "\((user?.value?.amount ?? 0).description)\(user?.value?.currencyCode ?? "")"
+        cell.detailTextLabel?.text = "\((user?.amount?.value ?? 0).description)\(user?.amount?.currencyCode ?? "")"
         cell.textLabel?.textColor = .black
         cell.detailTextLabel?.textColor = .black
         return cell

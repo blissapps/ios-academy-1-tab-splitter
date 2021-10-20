@@ -127,6 +127,8 @@ extension AmountTextField: CurrencyPickerViewDelegate {
         guard let currency = currency else {
             return
         }
+        let newAmount = (amount ?? AmountValue(value: 0, currencyCode: "EUR")) >>> currency
+        self.amount = newAmount
         selectedCurrency = currency
     }
 }
@@ -145,9 +147,9 @@ extension  AmountValue {
         guard let amount = Decimal(string: text, locale: Locale.current) else {
             return nil
         }
-        return AmountValue(amount: amount, currencyCode: currencyCode)
+        return AmountValue(value: amount, currencyCode: currencyCode)
     }
     var formatAmountForDisplay: String {
-        amount.displayFormat
+        value.displayFormat
     }
 }

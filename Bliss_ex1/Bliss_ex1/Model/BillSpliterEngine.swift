@@ -14,7 +14,7 @@ public class BillSpliterEngine {
     var latest: LatestDto?
    
     //MARK: - Private vars
-    public var billAmount = AmountValue(amount: 0, currencyCode: "EUR") {
+    public var billAmount = AmountValue(value: 0, currencyCode: "EUR") {
         didSet {
             recalculate()
         }
@@ -37,7 +37,7 @@ public class BillSpliterEngine {
 
     func reset() {
         users = []
-        billAmount.amount = 0
+        billAmount.value = 0
     }
      
     func saveUser(_ user: BillItem) {
@@ -59,35 +59,26 @@ public class BillSpliterEngine {
         var changedValue: Decimal = 0
         var valueAmount: Decimal = 0
 
-        changedUsers.forEach { changedValue += ($0.value?.amount ?? 0) }
+        changedUsers.forEach { changedValue += ($0.amount?.value ?? 0) }
 
         let numberOfUnchangedUser = Decimal(users.count - changedUsers.count)
         
-        if (billAmount.amount - changedValue) < 0 {
+        if (billAmount.value - changedValue) < 0 {
             valueAmount = 0
         } else {
-            valueAmount = (billAmount.amount - changedValue) / numberOfUnchangedUser
+            valueAmount = (billAmount.value - changedValue) / numberOfUnchangedUser
         }
         
         for (index, user) in users.enumerated() {
             if !changedUsers.contains(user) {
-                users[index].value?.amount = valueAmount
+                users[index].amount?.value = valueAmount
             }
         }
 
         //update remainder
         var rest: Decimal = 0
-        users.forEach{ rest += ($0.value?.amount ?? 0)}
-        restAmount = billAmount.amount -  rest
+        users.forEach{ rest += ($0.amount?.value ?? 0)}
+        restAmount = billAmount.value -  rest
     }
-    
-    //MARK: - CurrencyChanged
-    func currencyChanged(newCurrency: String) {
-        guard let prevValue = latest?.rates[billAmount.currencyCode],
-              let newValue = latest?.rates[newCurrency] else {
-            return
-        }
-        billAmount.amount = (billAmount.amount / prevValue)*newValue
-        recalculate()
-    }
+
 }
