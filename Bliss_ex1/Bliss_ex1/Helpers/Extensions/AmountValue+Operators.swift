@@ -26,7 +26,6 @@ extension AmountValue {
             }
             exchangeRates[keyCurrency] = ratesForKeyCurrency
         }
-        print(exchangeRates)
     }
     
     private static var exchangeRates: [String: [String: Decimal]] = [:]

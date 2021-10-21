@@ -98,7 +98,7 @@ class SecondViewController: UIViewController {
     
     private func configScreen() {
         nameTextField.text = user?.name
-        valueTextField.text = user?.amount?.value.description
+        valueTextField.amount = user?.amount
     }
     
     func changeTitleButton() {
@@ -120,13 +120,9 @@ class SecondViewController: UIViewController {
         if valueTextField.text != "" {
             nilValue = true
         }
-        
-        let valueAsString = valueTextField.text?.replacingOccurrences(of: ",", with: ".") ?? "0"
-        
-        let value = Decimal(string: valueAsString, locale: Locale.current) ?? 0
         let name = nameTextField.text ?? ""
-        let amountValue = AmountValue(value: value, currencyCode: "")
-        
+        let amountValue = valueTextField.amount
+
         if coordinator?.selectedOption == .add {
             coordinator?.saveUser(BillItem(name: name, amount: amountValue, changedUser: nilValue))
         } else {

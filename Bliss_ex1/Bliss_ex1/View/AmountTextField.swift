@@ -58,7 +58,7 @@ public class AmountTextField: UITextField {
     }
 
     private func updateWithAmount(_ amount: AmountValue?) {
-        text = amount.formatAmountForDisplay
+        text = amount.formatAmountValueForDisplay
         currencyButton.setTitle(amount?.currencyCode, for: .normal)
     }
     
@@ -91,6 +91,8 @@ extension AmountTextField: UITextFieldDelegate {
         amountTextFieldDelegate?.amountDidChange(from: self, amount: amount)
         endEditing(true)
     }
+
+    
 }
 
 extension AmountTextField: CurrencyPickerViewDelegate {
@@ -105,6 +107,13 @@ extension AmountTextField: CurrencyPickerViewDelegate {
 }
 
 extension Optional where Wrapped == AmountValue {
+    var formatAmountValueForDisplay: String {
+        guard let amount = self else {
+            return ""
+        }
+        return amount.formatAmountValueForDisplay
+    }
+
     var formatAmountForDisplay: String {
         guard let amount = self else {
             return ""
@@ -120,7 +129,11 @@ extension  AmountValue {
         }
         return AmountValue(value: amount, currencyCode: currencyCode)
     }
-    var formatAmountForDisplay: String {
+    var formatAmountValueForDisplay: String {
         value.displayFormat
+    }
+
+    var formatAmountForDisplay: String {
+        "\(value.displayFormat) \(currencyCode)"
     }
 }
