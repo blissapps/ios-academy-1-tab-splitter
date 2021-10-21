@@ -14,13 +14,19 @@ extension AmountValue {
     
     public static func initialize (currencyCode: String, rates: [String: Decimal]){
         exchangeRates[currencyCode] = rates
+        
         for keyCurrency in rates.keys{
-            var 
+            
+            var ratesForKeyCurrency: [String: Decimal] = [:]
+            
+            for item in rates {
+                guard let keyRate = rates[keyCurrency],
+                      let secondKeyRates = rates[item.key] else { return }
+                ratesForKeyCurrency[item.key] = secondKeyRates / keyRate
+            }
+            exchangeRates[keyCurrency] = ratesForKeyCurrency
         }
     }
-    
-    //     AmountValue.initialize(currencyCode: latest.base, rates: latest.rates)
-
     
     private static var exchangeRates: [String: [String: Decimal]] = [:]
 

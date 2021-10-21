@@ -50,7 +50,9 @@ class CurrencyPickerView: UIView {
         currencyPicker.delegate = self
         currencyPicker.dataSource = self
         addSubview(currencyPicker)
-
+        
+        currencyPicker.backgroundColor = .white
+        
         toolBar = UIToolbar()
         toolBar?.barStyle = UIBarStyle.default
         toolBar?.isTranslucent = true
