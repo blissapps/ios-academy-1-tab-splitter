@@ -10,6 +10,12 @@ import Foundation
 public enum DecimalParseResult {
     case failure
     case success(Decimal)
+    var extractedValue: Decimal?{
+        switch self {
+        case .success(let value): return value
+        case .failure: return nil
+        }
+    }
 }
 
 public struct DecimalParser {

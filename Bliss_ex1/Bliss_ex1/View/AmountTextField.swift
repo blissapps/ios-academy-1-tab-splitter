@@ -19,12 +19,6 @@ public class AmountTextField: UITextField {
     
     public weak var amountTextFieldDelegate: AmountTextFieldDelegate?
 
-    public var selectedCurrency: String = "" {
-        didSet {
-            currencyButton.setTitle(selectedCurrency, for: .normal)
-        }
-    }
-
     private var _amount: AmountValue?
     public var amount: AmountValue? {
         set {
@@ -55,39 +49,17 @@ public class AmountTextField: UITextField {
         commonInit()
     }
     
-    override public func layoutSubviews() {
-        super.layoutSubviews()
-    }
-    
-    override public var intrinsicContentSize: CGSize{
-        let size = super.intrinsicContentSize
-        print(size)
-        return size
-    }
-
-    public override func rightViewRect(forBounds bounds: CGRect) -> CGRect {
-        let buttonSize = rightView?.intrinsicContentSize ?? .zero
-       
-        return CGRect(x: frame.width - buttonSize.width, y: 0, width: buttonSize.width, height: buttonSize.height)
-    }
-    
-    public override func textRect(forBounds bounds: CGRect) -> CGRect {
-        let buttonSize = rightView?.intrinsicContentSize ?? .zero
-        return CGRect(x: 0, y: 0, width: frame.width - buttonSize.width, height: frame.height)
-    }
-    
     private func commonInit() {
         rightView = currencyButton
         rightViewMode = .always
         currencyButton.addTarget(self, action: #selector(self.currencyButtonTouchUpInside), for: .touchUpInside)
+        currencyButton.setTitleColor(.black, for: .normal)
         delegate = self
     }
 
     private func updateWithAmount(_ amount: AmountValue?) {
         text = amount.formatAmountForDisplay
         currencyButton.setTitle(amount?.currencyCode, for: .normal)
-        currencyButton.setTitleColor(.black, for: .normal)
-        selectedCurrency = amount?.currencyCode ?? ""
     }
     
     @objc func currencyButtonTouchUpInside() {
@@ -114,7 +86,7 @@ extension AmountTextField: UITextFieldDelegate {
 
     public func textFieldDidEndEditing(_ textField: UITextField) {
         guard let text = textField.text else { return }
-        let amount = AmountValue.parse(text, selectedCurrency)
+        let amount = AmountValue.parse(text, _amount?.currencyCode ?? "EUR")
         _amount = amount
         amountTextFieldDelegate?.amountDidChange(from: self, amount: amount)
         endEditing(true)
@@ -126,9 +98,9 @@ extension AmountTextField: CurrencyPickerViewDelegate {
         guard let currency = currency else {
             return
         }
-        let newAmount = (amount ?? AmountValue(value: 0, currencyCode: "EUR")) >>> currency
+        let value = DecimalParser.parseDecimalString(text ?? "")
+        let newAmount = (amount ?? AmountValue(value: value.extractedValue ?? 0, currencyCode: "EUR")) >>> currency
         self.amount = newAmount
-        selectedCurrency = currency
     }
 }
 

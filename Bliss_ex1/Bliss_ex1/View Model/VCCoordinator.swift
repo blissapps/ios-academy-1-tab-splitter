@@ -85,7 +85,4 @@ final class VCCoordinator: CoordinatorProtocol {
             vc.changeTitleButton()
             vc.user = user
     }
-    
-//    private func goToCurrencyPickerScreen() {
-//    }
 }

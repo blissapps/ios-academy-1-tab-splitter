@@ -21,11 +21,12 @@ extension AmountValue {
             
             for item in rates {
                 guard let keyRate = rates[keyCurrency],
-                      let secondKeyRates = rates[item.key] else { return }
+                      let secondKeyRates = rates[item.key] else { continue }
                 ratesForKeyCurrency[item.key] = secondKeyRates / keyRate
             }
             exchangeRates[keyCurrency] = ratesForKeyCurrency
         }
+        print(exchangeRates)
     }
     
     private static var exchangeRates: [String: [String: Decimal]] = [:]

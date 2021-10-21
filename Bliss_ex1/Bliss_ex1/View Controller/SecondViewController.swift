@@ -84,7 +84,8 @@ class SecondViewController: UIViewController {
         backButton?.perform(#selector(self.back))
         
         vStackView.snp.makeConstraints { make in
-            make.leading.trailing.equalToSuperview().offset(30)
+            make.leading.equalToSuperview().offset(30)
+            make.trailing.equalToSuperview().offset(-30)
             make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
         }
         

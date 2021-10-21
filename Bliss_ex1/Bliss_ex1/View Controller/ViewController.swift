@@ -182,7 +182,7 @@ extension ViewController: UITableViewDataSource {
         
         let user = coordinator?.users[indexPath.row]
         cell.textLabel?.text = user?.name
-        cell.detailTextLabel?.text = "\((user?.amount?.value ?? 0).description)\(user?.amount?.currencyCode ?? "")"
+        cell.detailTextLabel?.text = user?.amount?.formatAmountForDisplay ?? "N.A."
         cell.textLabel?.textColor = .black
         cell.detailTextLabel?.textColor = .black
         return cell
