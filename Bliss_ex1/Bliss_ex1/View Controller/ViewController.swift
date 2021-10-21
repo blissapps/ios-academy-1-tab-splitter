@@ -134,7 +134,7 @@ extension ViewController: AmountTextFieldDelegate {
             print("no amount")
             return
         }
-        coordinator?.setBillAmount(amount.value)
+        coordinator?.setBillAmount(amount)
     }
 }
 
@@ -211,7 +211,6 @@ extension ViewController: UITextFieldDelegate {
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         guard let text = textField.text else { return }
-        coordinator?.setBillAmount(text)
         view.endEditing(true)
     }
 }

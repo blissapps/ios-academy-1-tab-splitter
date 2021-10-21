@@ -13,6 +13,10 @@ public class BillSpliterEngine {
     
     var latest: LatestDto?
    
+    func rates(for currencyCode: String) -> Decimal? {
+        latest?.rates[currencyCode]
+    }
+    
     //MARK: - Private vars
     public var billAmount = AmountValue(value: 0, currencyCode: "EUR") {
         didSet {
@@ -80,5 +84,4 @@ public class BillSpliterEngine {
         users.forEach{ rest += ($0.amount?.value ?? 0)}
         restAmount = billAmount.value -  rest
     }
-
 }

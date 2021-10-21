@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 final class VCCoordinator: CoordinatorProtocol {
-    
+
     var billEngine: BillSpliterEngine
     var navigationController: UINavigationController
     var delegate: CoordinatorDelegate?
@@ -78,16 +78,6 @@ final class VCCoordinator: CoordinatorProtocol {
         delegate?.updateRest(with: billEngine.restAmount.displayAsCurrencyFormat)
     }
 
-    func setBillAmount(_ value: String) {
-        let result = DecimalParser.parseDecimalString(value)
-        switch result {
-        case .failure:
-            delegate?.displayBillAmountError()
-        case .success(let billAmount):
-            setBillAmount(billAmount)
-        }
-    }
-
     private func pushManageUserViewController(user: BillItem?) {
         let vc = SecondViewController()
             navigationController.pushViewController(vc, animated: true)
@@ -96,14 +86,6 @@ final class VCCoordinator: CoordinatorProtocol {
             vc.user = user
     }
     
-    func setCurrencyCode(_ currencyCode: String) {
-        billEngine.currencyChanged(newCurrency: currencyCode)
-        
-        delegate?.updateRest(with: "\(billEngine.restAmount.displayAsCurrencyFormat)")
-        delegate?.updateTotal(with: "\(billEngine.billAmount.value.displayAsCurrencyFormat)")
-        delegate?.reloadData()
-    }
-    
-    private func goToCurrencyPickerScreen() {
-    }
+//    private func goToCurrencyPickerScreen() {
+//    }
 }

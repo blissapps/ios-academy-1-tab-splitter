@@ -22,7 +22,6 @@ public class AmountTextField: UITextField {
     public var selectedCurrency: String = "" {
         didSet {
             currencyButton.setTitle(selectedCurrency, for: .normal)
-            coordinator?.setCurrencyCode(selectedCurrency)
         }
     }
 
