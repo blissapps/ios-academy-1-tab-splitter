@@ -11,7 +11,18 @@ import UIKit
 infix operator >>> : AdditionPrecedence
 
 extension AmountValue {
-    private static var exchangeRates: [String: [String: Decimal]] = ["USD": ["EUR": 1.1]]
+    
+    public static func initialize (currencyCode: String, rates: [String: Decimal]){
+        exchangeRates[currencyCode] = rates
+        for keyCurrency in rates.keys{
+            var 
+        }
+    }
+    
+    //     AmountValue.initialize(currencyCode: latest.base, rates: latest.rates)
+
+    
+    private static var exchangeRates: [String: [String: Decimal]] = [:]
 
     private static func convert(value: Decimal, fromCurrency: String, toCurrency: String) -> Decimal {
         value * (exchangeRates[fromCurrency]?[toCurrency] ?? 0)

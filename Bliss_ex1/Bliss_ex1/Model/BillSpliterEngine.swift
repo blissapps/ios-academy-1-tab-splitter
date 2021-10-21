@@ -36,6 +36,7 @@ public class BillSpliterEngine {
     init () {
         apiClient.getLatest { latest in
             self.latest = latest
+            AmountValue.initialize(currencyCode: latest.base, rates: latest.rates)
         }
     }
 
