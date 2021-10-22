@@ -17,7 +17,7 @@ class CurrencyPickerView: UIView {
     weak var delegate: CurrencyPickerViewDelegate?
 
     var coordinator: CoordinatorProtocol?
-    var currencies : [String : Decimal]? {
+    var currencies : [String]? {
         didSet {
             currencyPicker?.reloadAllComponents()
             
@@ -33,7 +33,7 @@ class CurrencyPickerView: UIView {
     var selectedCurrency: String?
 
     var sortedCurrencies: [String] {
-        currencies?.keys.sorted() ?? []
+        currencies?.sorted() ?? []
     }
 
     override init(frame: CGRect) {

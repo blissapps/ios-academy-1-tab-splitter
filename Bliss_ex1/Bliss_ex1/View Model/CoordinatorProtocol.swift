@@ -19,13 +19,12 @@ protocol CoordinatorDelegate: AnyObject {
     func updateTotal(with text: String)
 }
 
-protocol CoordinatorProtocol {
+protocol CoordinatorProtocol: AnyObject {
    
     var delegate: CoordinatorDelegate? { get set }
     var selectedUser: BillItem? { get }
     var selectedOption: OperationOption? { get }
     var users: [BillItem] { get }
-    var latestCurrencies: [String : Decimal]? { get }
     
     func setBillAmount(_ amount: AmountValue)
     func selectUser(at index: Int)
@@ -33,4 +32,5 @@ protocol CoordinatorProtocol {
     func add()
     func back()
     func reset()
+    func start()
 }

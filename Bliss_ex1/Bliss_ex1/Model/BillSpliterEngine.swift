@@ -8,15 +8,6 @@
 import Foundation
 
 public class BillSpliterEngine {
-    
-    let apiClient = ApiClient()
-    
-    var latest: LatestDto?
-   
-    func rates(for currencyCode: String) -> Decimal? {
-        latest?.rates[currencyCode]
-    }
-    
     //MARK: - Private vars
     public var billAmount = AmountValue(value: 0, currencyCode: "EUR") {
         didSet {
@@ -33,13 +24,6 @@ public class BillSpliterEngine {
     }
 
     //MARK: - Public methods
-    init () {
-        apiClient.getLatest { latest in
-            self.latest = latest
-            AmountValue.initialize(currencyCode: latest.base, rates: latest.rates)
-        }
-    }
-
     func reset() {
         users = []
         billAmount.value = 0

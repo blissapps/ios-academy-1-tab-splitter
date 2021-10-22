@@ -9,7 +9,6 @@ import Foundation
 import UIKit
 
 final class VCCoordinator: CoordinatorProtocol {
-
     var billEngine: BillSpliterEngine
     var navigationController: UINavigationController
     var delegate: CoordinatorDelegate?
@@ -18,10 +17,6 @@ final class VCCoordinator: CoordinatorProtocol {
     
     var users: [BillItem] {
         billEngine.users
-    }
-    
-    var latestCurrencies: [String : Decimal]? {
-        billEngine.latest?.rates
     }
 
     lazy var storyboard: UIStoryboard = {
@@ -47,6 +42,13 @@ final class VCCoordinator: CoordinatorProtocol {
         delegate?.updateRest(with: "\(billEngine.restAmount)")
         delegate?.updateTotal(with: "\(billEngine.billAmount.value)")
         delegate?.reloadData()
+    }
+    
+    func start() {
+        let vc = ViewController()
+        vc.coordinator = self
+        delegate = vc
+        navigationController.setViewControllers([vc], animated: true)
     }
 
     func setBill(bill: Decimal) {

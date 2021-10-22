@@ -22,6 +22,7 @@
 		07A6B41327205D6800566EAA /* AmountValue+Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A6B41227205D6800566EAA /* AmountValue+Operators.swift */; };
 		07A6B41527205DB900566EAA /* AmountValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A6B41427205DB900566EAA /* AmountValue.swift */; };
 		07D40B8C2707179D000B88A2 /* Double+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D40B8B2707179D000B88A2 /* Double+Extensions.swift */; };
+		07E3DAE5272300DE007D6CFB /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E3DAE4272300DE007D6CFB /* LoadingViewController.swift */; };
 		0CCCAD011A51D1256AFAD62E /* Pods_Bliss_ex1.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E807D26CA513CA1DFAE96AFC /* Pods_Bliss_ex1.framework */; };
 		5F1704B0270B3C0800564DFC /* BillSpliterEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F1704AF270B3C0800564DFC /* BillSpliterEngine.swift */; };
 		B0D2F623A5B64FB3080F3321 /* Pods_Bliss_ex1Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C34E9D1611969C781C39CCC /* Pods_Bliss_ex1Tests.framework */; };
@@ -71,6 +72,7 @@
 		07A6B41227205D6800566EAA /* AmountValue+Operators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AmountValue+Operators.swift"; sourceTree = "<group>"; };
 		07A6B41427205DB900566EAA /* AmountValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmountValue.swift; sourceTree = "<group>"; };
 		07D40B8B2707179D000B88A2 /* Double+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Extensions.swift"; sourceTree = "<group>"; };
+		07E3DAE4272300DE007D6CFB /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
 		1F8E37519ADC0F761306BDD0 /* Pods-Bliss_ex1Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bliss_ex1Tests.release.xcconfig"; path = "Target Support Files/Pods-Bliss_ex1Tests/Pods-Bliss_ex1Tests.release.xcconfig"; sourceTree = "<group>"; };
 		5F1704AF270B3C0800564DFC /* BillSpliterEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillSpliterEngine.swift; sourceTree = "<group>"; };
 		6C34E9D1611969C781C39CCC /* Pods_Bliss_ex1Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Bliss_ex1Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -196,6 +198,7 @@
 			children = (
 				07655AF82704AA58005DFF09 /* ViewController.swift */,
 				07655B272704C90F005DFF09 /* SecondViewController.swift */,
+				07E3DAE4272300DE007D6CFB /* LoadingViewController.swift */,
 			);
 			path = "View Controller";
 			sourceTree = "<group>";
@@ -511,6 +514,7 @@
 				0730DE20270F01A000B796C3 /* Currency.swift in Sources */,
 				07D40B8C2707179D000B88A2 /* Double+Extensions.swift in Sources */,
 				07655B282704C90F005DFF09 /* SecondViewController.swift in Sources */,
+				07E3DAE5272300DE007D6CFB /* LoadingViewController.swift in Sources */,
 				5F1704B0270B3C0800564DFC /* BillSpliterEngine.swift in Sources */,
 				07655AF92704AA58005DFF09 /* ViewController.swift in Sources */,
 				07A6B41527205DB900566EAA /* AmountValue.swift in Sources */,
