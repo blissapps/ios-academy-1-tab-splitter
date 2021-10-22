@@ -23,6 +23,7 @@ public class LoadingViewController: UIViewController {
         super.viewDidLoad()
         view.addSubview(activityIndicatorView)
         
+        activityIndicatorView.backgroundColor = .white
         activityIndicatorView.snp.makeConstraints { v in
             v.center.equalToSuperview()
             
