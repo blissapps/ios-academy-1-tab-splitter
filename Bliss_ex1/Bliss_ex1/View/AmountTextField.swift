@@ -64,6 +64,7 @@ public class AmountTextField: UITextField {
     
     @objc func currencyButtonTouchUpInside() {
         currencyPickerView = CurrencyPickerView.showInKeyWindow()
+        currencyPickerView?.selectedCurrency = amount?.currencyCode
         currencyPickerView?.currencies = coordinator?.latestCurrencies
         currencyPickerView?.delegate = self
     }
@@ -101,7 +102,7 @@ extension AmountTextField: CurrencyPickerViewDelegate {
             return
         }
         let value = DecimalParser.parseDecimalString(text ?? "")
-        let newAmount = (amount ?? AmountValue(value: value.extractedValue ?? 0, currencyCode: "EUR")) >>> currency
+        let newAmount = (amount ?? AmountValue(value: value.extractedValue ?? 0, currencyCode: currency)) >>> currency
         self.amount = newAmount
     }
 }

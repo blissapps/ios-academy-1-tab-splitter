@@ -95,7 +95,7 @@ class SecondViewController: UIViewController {
         }
         dismissKeyboard()
     }
-    
+
     private func configScreen() {
         nameTextField.text = user?.name
         valueTextField.amount = user?.amount

@@ -10,7 +10,7 @@ import SnapKit
 
 class ViewController: UIViewController {
     var coordinator: CoordinatorProtocol?
-    
+        
     var currencies: [String:Decimal] = [:]
     
     private var tableView: UITableView = {

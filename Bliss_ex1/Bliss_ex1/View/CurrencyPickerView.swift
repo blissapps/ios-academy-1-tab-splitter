@@ -20,6 +20,11 @@ class CurrencyPickerView: UIView {
     var currencies : [String : Decimal]? {
         didSet {
             currencyPicker?.reloadAllComponents()
+            
+            if let currency =  selectedCurrency {
+                let index = sortedCurrencies.firstIndex(of: currency)
+                currencyPicker?.selectRow(index ?? 0, inComponent: 0, animated: false)
+            } 
         }
     }
     var currencyPicker: UIPickerView?
@@ -68,7 +73,7 @@ class CurrencyPickerView: UIView {
         guard let toolBar = toolBar else {
             return
         }
-
+                
         addSubview(toolBar)
     }
 
