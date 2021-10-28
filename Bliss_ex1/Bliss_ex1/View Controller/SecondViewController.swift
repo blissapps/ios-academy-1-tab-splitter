@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import test
 
 extension String {
     var localized: String {
@@ -124,7 +125,7 @@ class SecondViewController: UIViewController {
         let amountValue = valueTextField.amount
 
         if coordinator?.selectedOption == .add {
-            coordinator?.saveUser(BillItem(name: name, amount: amountValue, changedUser: nilValue))
+            coordinator?.saveUser(BillItem(name: name, amount: amountValue!, changedUser: nilValue))
         } else {
             guard let selectedUser = coordinator?.selectedUser else { return }
             var user = selectedUser

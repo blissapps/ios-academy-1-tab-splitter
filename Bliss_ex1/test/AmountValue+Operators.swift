@@ -7,12 +7,11 @@
 
 import Foundation
 import UIKit
-import testModel
 
 infix operator >>> : AdditionPrecedence
 
 extension AmountValue {
-    static var currencies: [String] {
+    public static var currencies: [String] {
         exchangeRates.keys.map{$0}
     }
     
@@ -32,13 +31,13 @@ extension AmountValue {
         }
     }
     
-    private static var exchangeRates: [String: [String: Decimal]] = [:]
+    public static var exchangeRates: [String: [String: Decimal]] = [:]
 
     private static func convert(value: Decimal, fromCurrency: String, toCurrency: String) -> Decimal {
         value * (exchangeRates[fromCurrency]?[toCurrency] ?? 0)
     }
 
-    static func >>>(lhs: AmountValue, rhs: String) -> AmountValue {
+    public static func >>>(lhs: AmountValue, rhs: String) -> AmountValue {
         let baseAmount = lhs.value
         let baseCurrency = lhs.currencyCode
         let convertedAmount = convert(value: baseAmount, fromCurrency: baseCurrency, toCurrency: rhs)

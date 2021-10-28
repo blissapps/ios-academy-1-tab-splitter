@@ -4,7 +4,6 @@
 //
 //  Created by Tiago Janela on 10/4/21.
 //
-
 import Foundation
 
 extension Array where Element == BillItem {

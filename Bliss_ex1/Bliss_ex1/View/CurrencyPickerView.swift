@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import test
 
 protocol CurrencyPickerViewDelegate: AnyObject {
     func currencyPickerView(_: CurrencyPickerView, didSelectCurrency currency: String?)

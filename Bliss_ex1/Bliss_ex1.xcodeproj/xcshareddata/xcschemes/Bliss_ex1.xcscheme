@@ -48,6 +48,16 @@
                ReferencedContainer = "container:Bliss_ex1.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "07013584272AA6750013ECB4"
+               BuildableName = "testTests.xctest"
+               BlueprintName = "testTests"
+               ReferencedContainer = "container:Bliss_ex1.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction
