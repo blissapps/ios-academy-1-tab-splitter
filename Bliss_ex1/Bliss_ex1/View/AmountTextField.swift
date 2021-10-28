@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 import SnapKit
+import test
 
 public protocol AmountTextFieldDelegate: AnyObject {
     func amountDidChange(from: AmountTextField, amount: AmountValue?)

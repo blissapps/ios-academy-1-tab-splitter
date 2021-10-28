@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import test
 
 class ViewController: UIViewController {
     var coordinator: CoordinatorProtocol?

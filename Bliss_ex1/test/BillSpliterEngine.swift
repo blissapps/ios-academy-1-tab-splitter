@@ -7,6 +7,8 @@
 
 import Foundation
 
+//#import <Bliss_ex1/Helpers/Extensions/BillItem+ArrayExtension.swift>
+
 public class BillSpliterEngine {
     //MARK: - Private vars
     public var billAmount = AmountValue(value: 0, currencyCode: "EUR") {
@@ -18,23 +20,25 @@ public class BillSpliterEngine {
     
     public var users: [BillItem] = []
     
+    public init() {}
+
     //MARK: - Private computed vars
     private var changedUsers: [BillItem] {
         users.filter({ $0.changedUser == true })
     }
 
     //MARK: - Public methods
-    func reset() {
+    public func reset() {
         users = []
         billAmount.value = 0
     }
      
-    func saveUser(_ user: BillItem) {
+    public func saveUser(_ user: BillItem) {
         addUser(user)
         recalculate()
     }
     
-    func addUser(_ user:BillItem) {
+    public func addUser(_ user:BillItem) {
         if !users.contains(user) {
             users.append(user)
             return

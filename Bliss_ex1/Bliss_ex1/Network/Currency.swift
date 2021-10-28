@@ -8,6 +8,7 @@
 import Foundation
 
 import Moya
+import test
 
 struct LatestDto: Decodable{
     let success: Bool

@@ -7,6 +7,7 @@
 import Foundation
 import SnapKit
 import UIKit
+import test
 
 public class LoadingViewController: UIViewController {
     weak var coordinator: CoordinatorProtocol?

@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import test
 
 public enum DecimalParseResult {
     case failure
