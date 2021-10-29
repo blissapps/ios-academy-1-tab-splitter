@@ -26,6 +26,7 @@ protocol CoordinatorProtocol: AnyObject {
     var selectedUser: BillItem? { get }
     var selectedOption: OperationOption? { get }
     var users: [BillItem] { get }
+    var billAmount: AmountValue { get }
     
     func setBillAmount(_ amount: AmountValue)
     func selectUser(at index: Int)

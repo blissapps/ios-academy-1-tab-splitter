@@ -11,14 +11,40 @@ import Foundation
 
 public class BillSpliterEngine {
     //MARK: - Private vars
-    public var billAmount = AmountValue(value: 0, currencyCode: "EUR") {
-        didSet {
+    public var billAmount: AmountValue {
+        get {
+            guard let bill = UserDefaults.standard.data(forKey: "billAmount") else {
+                return AmountValue(value: 0, currencyCode: "EUR")
+            }
+            let decoder = JSONDecoder()
+
+            return (try? decoder.decode(AmountValue.self, from: bill)) ?? AmountValue(value: 0, currencyCode: "EUR")
+        }
+
+        set {
+            guard let data = try? JSONEncoder().encode(newValue) else { return }
+            UserDefaults.standard.set(data, forKey: "billAmount")
             recalculate()
         }
     }
+    
     public var restAmount: Decimal = 0
     
-    public var users: [BillItem] = []
+    public var users: [BillItem] {
+        get {
+            guard let user = UserDefaults.standard.data(forKey: "userArray") else {
+                return []
+            }
+            let decoder = JSONDecoder()
+            
+            return (try? decoder.decode([BillItem].self, from: user)) ?? []
+        }
+        
+        set {
+            guard let data = try? JSONEncoder().encode(newValue) else { return }
+            UserDefaults.standard.set(data, forKey: "userArray")
+        }
+    }
     
     public init() {}
 
@@ -63,7 +89,7 @@ public class BillSpliterEngine {
         }
         
         for (index, user) in users.enumerated() {
-            if !changedUsers.contains(user) {
+            if changedUsers.contains(user) {
                 users[index].amount?.value = valueAmount
             }
         }
