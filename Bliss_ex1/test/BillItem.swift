@@ -8,7 +8,6 @@
 import Foundation
 import UIKit
 
-
 public struct BillItem: Equatable, Codable {
     let id = UUID().uuidString
     

@@ -122,10 +122,10 @@ class SecondViewController: UIViewController {
             nilValue = true
         }
         let name = nameTextField.text ?? ""
-        let amountValue = valueTextField.amount
+        let amountValue = valueTextField.amount ?? AmountValue(value: 0, currencyCode: "EUR")
 
         if coordinator?.selectedOption == .add {
-            coordinator?.saveUser(BillItem(name: name, amount: amountValue!, changedUser: nilValue))
+            coordinator?.saveUser(BillItem(name: name, amount: amountValue, changedUser: nilValue))
         } else {
             guard let selectedUser = coordinator?.selectedUser else { return }
             var user = selectedUser

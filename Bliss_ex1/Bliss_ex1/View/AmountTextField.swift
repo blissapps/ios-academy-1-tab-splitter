@@ -93,8 +93,6 @@ extension AmountTextField: UITextFieldDelegate {
         amountTextFieldDelegate?.amountDidChange(from: self, amount: amount)
         endEditing(true)
     }
-
-    
 }
 
 extension AmountTextField: CurrencyPickerViewDelegate {
