@@ -15,5 +15,4 @@ public struct AmountValue: Equatable, Codable {
         self.value = value
         self.currencyCode = currencyCode
     }
-
 }
