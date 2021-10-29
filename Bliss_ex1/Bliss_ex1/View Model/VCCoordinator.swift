@@ -16,6 +16,10 @@ final class VCCoordinator: CoordinatorProtocol {
     var selectedUser: BillItem?
     var selectedOption: OperationOption?
     
+    var billAmount: AmountValue {
+        billEngine.billAmount
+    }
+    
     var users: [BillItem] {
         billEngine.users
     }

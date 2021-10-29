@@ -111,7 +111,7 @@ class ViewController: UIViewController {
         totalErrorLabel.isHidden = true
         totalTextField.placeholder = "amount_text_field_placeholder".localized
         
-        totalTextField.amount = AmountValue(value: 0, currencyCode: "EUR")
+        totalTextField.amount = coordinator?.billAmount
         totalTextField.coordinator = coordinator
         totalTextField.amountTextFieldDelegate = self
         

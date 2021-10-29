@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct AmountValue: Equatable {
+public struct AmountValue: Equatable, Codable {
     public var value: Decimal
     public var currencyCode: String
     

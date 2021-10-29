@@ -19,8 +19,8 @@ class testTests: XCTestCase {
     }
     
     func testExchanges() throws {
-        AmountValue.initialize(currencyCode: "EUR", rates: ["USD":1.1])
-        
+        let a = AmountValue.initialize(currencyCode: "EUR", rates: ["USD":1.1])
+    
         XCTAssertEqual(<#T##expression1: Equatable##Equatable#>,
                        <#T##expression2: Equatable##Equatable#>)
     }
