@@ -79,7 +79,6 @@ class SecondViewController: UIViewController {
         valueTextField.coordinator = coordinator
 
         nameTextField.delegate = self
-        valueTextField.delegate = self
         
         saveOrAdd.addTarget(self, action: #selector(self.didTapButton), for: .touchUpInside)
         backButton?.perform(#selector(self.back))

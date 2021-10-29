@@ -14,6 +14,8 @@ public protocol AmountTextFieldDelegate: AnyObject {
     func amountDidChange(from: AmountTextField, amount: AmountValue?)
 }
 
+
+
 public class AmountTextField: UITextField {
     var coordinator: CoordinatorProtocol?
     var currencyPickerView: CurrencyPickerView?
