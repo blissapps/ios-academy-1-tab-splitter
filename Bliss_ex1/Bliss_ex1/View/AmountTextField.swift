@@ -103,7 +103,7 @@ extension AmountTextField: CurrencyPickerViewDelegate {
             return
         }
         let value = DecimalParser.parseDecimalString(text ?? "")
-        let newAmount = (amount ?? AmountValue(value: value.extractedValue ?? 0, currencyCode: currency)) >>> currency
+        let newAmount = try? (amount ?? AmountValue(value: value.extractedValue ?? 0, currencyCode: currency)) >>> currency
         self.amount = newAmount
     }
 }

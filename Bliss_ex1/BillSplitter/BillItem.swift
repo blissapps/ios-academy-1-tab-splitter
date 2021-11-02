@@ -7,6 +7,8 @@
 
 import Foundation
 import UIKit
+//
+import AmountValue
 
 public struct BillItem: Equatable, Codable {
     let id = UUID().uuidString

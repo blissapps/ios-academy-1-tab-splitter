@@ -6,11 +6,18 @@
 //
 
 import Foundation
+//
+import AmountValue
 
-public class BillSpliterEngine {
+public class BillSplitterEngine {
     //MARK: - Private vars
-    public var billAmount: AmountValue {
-        get {
+    static let initialAmount = AmountValue(value: 0, currencyCode: "EUR")
+    public var billAmountDidChange: ((AmountValue) -> Void)?
+    public var billAmount: AmountValue = BillSplitterEngine.initialAmount {
+        didSet {
+            billAmountDidChange?(billAmount)
+        }
+        /*get {
             if FeatureFlags.shared.isUserDefaultsOn {
                 guard let bill = UserDefaults.standard.data(forKey: "billAmount") else {
                     return AmountValue(value: 0, currencyCode: "EUR")
@@ -48,13 +55,18 @@ public class BillSpliterEngine {
                        let data = try? JSONEncoder().encode(newValue) else {return}
                 try? data.write(to: fileURL)
             }
-        }
+        }*/
     }
     
-    public var restAmount: Decimal = 0
-    
-    public var users: [BillItem] {
-        get {
+    public var restAmount: AmountValue = BillSplitterEngine.initialAmount
+
+    public var usersDidChange: (([BillItem]) -> Void)?
+    public var users: [BillItem] = [] {
+        didSet {
+            recalculate()
+            usersDidChange?(users)
+        }
+        /*get {
             guard let user = UserDefaults.standard.data(forKey: "userArray") else {
                 return []
             }
@@ -66,7 +78,7 @@ public class BillSpliterEngine {
         set {
             guard let data = try? JSONEncoder().encode(newValue) else { return }
             UserDefaults.standard.set(data, forKey: "userArray")
-        }
+        }*/
     }
     
     public init() {}
@@ -79,7 +91,7 @@ public class BillSpliterEngine {
     //MARK: - Public methods
     public func reset() {
         users = []
-        billAmount.value = 0
+        billAmount = BillSplitterEngine.initialAmount
     }
      
     public func saveUser(_ user: BillItem) {
@@ -118,8 +130,9 @@ public class BillSpliterEngine {
         }
 
         //update remainder
-        var rest: Decimal = 0
-        users.forEach{ rest += ($0.amount?.value ?? 0)}
-        restAmount = billAmount.value -  rest
+        let zeroAmount = AmountValue(value: 0, currencyCode: billAmount.currencyCode)
+        var rest: AmountValue = zeroAmount
+        users.forEach{ rest = (try? rest + ($0.amount ?? zeroAmount)) ?? zeroAmount }
+        restAmount = (try? billAmount - rest) ?? zeroAmount
     }
 }

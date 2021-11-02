@@ -37,7 +37,7 @@ public class LoadingViewController: UIViewController {
         activityIndicatorView.startAnimating()
         apiClient.getLatest { [weak self] latest in
             self?.latest = latest
-            AmountValue.initialize(currencyCode: latest.base, rates: latest.rates)
+            try? AmountValue.initialize(currencyCode: latest.base, rates: latest.rates)
             self?.coordinator?.start()
         }
     }

@@ -1,13 +1,13 @@
 //
 //  AmountValue.swift
-//  Bliss_ex1
+//  AmountValue
 //
 //  Created by Filipe Santo on 20/10/2021.
 //
 
 import Foundation
 
-public struct AmountValue: Equatable, Codable {
+public struct AmountValue: Hashable, Codable {
     public var value: Decimal
     public var currencyCode: String
     
