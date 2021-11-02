@@ -62,6 +62,7 @@ class CurrencyPickerView: UIView {
         currencyPicker.backgroundColor = .white
         
         toolBar = UIToolbar()
+        toolBar?.accessibilityIdentifier = "CurrencyPickerViewToolbar"
         toolBar?.barStyle = UIBarStyle.default
         toolBar?.isTranslucent = true
         toolBar?.tintColor = UIColor(red: 76/255, green: 217/255, blue: 100/255, alpha: 1)
@@ -78,6 +79,8 @@ class CurrencyPickerView: UIView {
         }
                 
         addSubview(toolBar)
+
+        currencyPicker.accessibilityIdentifier = "CurrencyPickerView"
     }
 
     fileprivate func positionInWindow() {

@@ -22,12 +22,27 @@ class BillSplitterAppUITests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func testExample() throws {
+    func testChangeCurrencyOfTotalAmount() throws {
         // UI tests must launch the application that they test.
         let app = XCUIApplication()
         app.launch()
 
         // Use recording to get started writing UI tests.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
+
+        let totalAmountTextField = app.textFields["TotalAmountTextField"]
+        XCTAssertTrue(totalAmountTextField.waitForExistence(timeout: 10))
+        let currencyButton = totalAmountTextField.buttons["CurrencyButton"]
+        XCTAssertTrue(currencyButton.waitForExistence(timeout: 10))
+        currencyButton.tap()
+
+        let pickerWheel = app.pickers["CurrencyPickerView"]
+
+        XCTAssertTrue(pickerWheel.waitForExistence(timeout: 10))
+        pickerWheel.pickerWheels.firstMatch.swipeUp()
+        let toolbar = app.toolbars["CurrencyPickerViewToolbar"]
+        XCTAssertTrue(toolbar.waitForExistence(timeout: 10))
+        toolbar.buttons["Done"].tap()
+
     }
 }

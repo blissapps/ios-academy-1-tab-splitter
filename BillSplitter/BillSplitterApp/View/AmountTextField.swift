@@ -60,6 +60,7 @@ public class AmountTextField: UITextField {
         rightViewMode = .always
         currencyButton.addTarget(self, action: #selector(self.currencyButtonTouchUpInside), for: .touchUpInside)
         currencyButton.setTitleColor(.black, for: .normal)
+        currencyButton.accessibilityIdentifier = "CurrencyButton"
         delegate = self
     }
 
