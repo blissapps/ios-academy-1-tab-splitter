@@ -149,12 +149,12 @@ extension ViewController: CoordinatorDelegate {
         tableView.reloadData()
     }
     
-    func updateRest(with text: String) {
-        restLabel.text = text
+    func updateRest(with rest: AmountValue) {
+        restLabel.text = rest.formatAmountForDisplay
     }
     
-    func updateTotal(with text: String) {
-        totalTextField.text = text
+    func updateTotal(with total: AmountValue) {
+        totalTextField.amount = total
         totalErrorLabel.isHidden = true
     }
 

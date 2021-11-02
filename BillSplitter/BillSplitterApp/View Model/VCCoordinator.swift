@@ -47,8 +47,8 @@ final class VCCoordinator: CoordinatorProtocol {
         selectedUser = nil
         selectedOption = nil
 
-        delegate?.updateRest(with: "\(billEngine.restAmount)")
-        delegate?.updateTotal(with: "\(billEngine.billAmount.value)")
+        delegate?.updateRest(with: billEngine.restAmount)
+        delegate?.updateTotal(with: billEngine.billAmount)
         delegate?.reloadData()
     }
     
@@ -74,23 +74,23 @@ final class VCCoordinator: CoordinatorProtocol {
     func saveUser(_ user: BillItem) {
         billEngine.users.save(user: user)
         delegate?.reloadData()
-        delegate?.updateRest(with: "\(billEngine.restAmount)€")
+        delegate?.updateRest(with: billEngine.restAmount)
         selectedUser = nil
         selectedOption = nil
     }
 
     func setBillAmount(_ amount: AmountValue) {
         billEngine.billAmount = amount
-        delegate?.updateTotal(with: billEngine.billAmount.displayAsCurrencyFormat)
-        delegate?.updateRest(with: billEngine.restAmount.displayAsCurrencyFormat)
+        delegate?.updateTotal(with: billEngine.billAmount)
+        delegate?.updateRest(with: billEngine.restAmount)
     }
 
     private func pushManageUserViewController(user: BillItem?) {
         let vc = SecondViewController()
-            navigationController.pushViewController(vc, animated: true)
-            vc.coordinator = self
-            vc.changeTitleButton()
-            vc.user = user
+        navigationController.pushViewController(vc, animated: true)
+        vc.coordinator = self
+        vc.changeTitleButton()
+        vc.user = user
     }
 
     func setupCoordinatorPersistence() {

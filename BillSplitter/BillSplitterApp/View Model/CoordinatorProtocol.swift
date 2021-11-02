@@ -18,8 +18,8 @@ enum OperationOption {
 protocol CoordinatorDelegate: AnyObject {
     func reloadData()
     func displayBillAmountError()
-    func updateRest(with text: String)
-    func updateTotal(with text: String)
+    func updateRest(with rest: AmountValue)
+    func updateTotal(with value: AmountValue)
 }
 
 protocol CoordinatorProtocol: AnyObject {

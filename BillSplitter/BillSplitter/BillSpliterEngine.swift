@@ -16,14 +16,8 @@ public class BillSplitterEngine {
     public var billAmount: AmountValue = BillSplitterEngine.initialAmount {
         didSet {
             billAmountDidChange?(billAmount)
+            recalculate()
         }
-        /*get {
-            if FeatureFlags.shared.isUserDefaultsOn {
-                
-            } else {
-                
-            }
-        }*/
     }
     
     public var restAmount: AmountValue = BillSplitterEngine.initialAmount
@@ -37,13 +31,6 @@ public class BillSplitterEngine {
             recalculate()
             usersDidChange?(users)
         }
-        /*get {
-            
-        }
-        
-        set {
-            
-        }*/
     }
     
     public init() {}
@@ -58,19 +45,6 @@ public class BillSplitterEngine {
         users = []
         billAmount = BillSplitterEngine.initialAmount
     }
-     
-    /*public func saveUser(_ user: BillItem) {
-        addUser(user)
-        recalculate()
-    }
-    
-    public func addUser(_ user:BillItem) {
-        if !users.contains(user) {
-            users.append(user)
-            return
-        }
-        users.replace(id: user.id, user: user)
-    }*/
 
     //MARK: - Private methods
     private func recalculate() {
