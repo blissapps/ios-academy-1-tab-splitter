@@ -1,6 +1,0 @@
-framework module Pods_Bliss_ex1_Bliss_ex1UITests {
-  umbrella header "Pods-Bliss_ex1-Bliss_ex1UITests-umbrella.h"
-
-  export *
-  module * { export * }
-}
