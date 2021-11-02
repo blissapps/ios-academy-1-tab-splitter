@@ -19,41 +19,9 @@ public class BillSplitterEngine {
         }
         /*get {
             if FeatureFlags.shared.isUserDefaultsOn {
-                guard let bill = UserDefaults.standard.data(forKey: "billAmount") else {
-                    return AmountValue(value: 0, currencyCode: "EUR")
-                }
-                let decoder = JSONDecoder()
-
-                return (try? decoder.decode(AmountValue.self, from: bill)) ?? AmountValue(value: 0, currencyCode: "EUR")
+                
             } else {
-                let fileManager = FileManager.default
                 
-                let foulder = fileManager.urls(for: .cachesDirectory, in: .userDomainMask)
-                guard let fileURL = foulder.first?.appendingPathComponent("billAmount" + ".cache") else {        return AmountValue(value: 0, currencyCode: "EUR")
-                }
-                
-                guard let data = try? Data(contentsOf: fileURL) else {
-                    return AmountValue(value: 0, currencyCode: "EUR")
-                }
-                let decoder = JSONDecoder()
-
-                return (try? decoder.decode(AmountValue.self, from: data)) ?? AmountValue(value: 0, currencyCode: "EUR")
-            }
-        }
-
-        set {
-            if FeatureFlags.shared.isUserDefaultsOn {
-                guard let data = try? JSONEncoder().encode(newValue) else { return }
-                UserDefaults.standard.set(data, forKey: "billAmount")
-                recalculate()
-            } else {
-                let fileManager = FileManager.default
-                
-                let foulder = fileManager.urls(for: .cachesDirectory, in: .userDomainMask)
-               
-                guard  let fileURL = foulder.first?.appendingPathComponent("billAmount" + ".cache"),
-                       let data = try? JSONEncoder().encode(newValue) else {return}
-                try? data.write(to: fileURL)
             }
         }*/
     }
@@ -70,17 +38,11 @@ public class BillSplitterEngine {
             usersDidChange?(users)
         }
         /*get {
-            guard let user = UserDefaults.standard.data(forKey: "userArray") else {
-                return []
-            }
-            let decoder = JSONDecoder()
             
-            return (try? decoder.decode([BillItem].self, from: user)) ?? []
         }
         
         set {
-            guard let data = try? JSONEncoder().encode(newValue) else { return }
-            UserDefaults.standard.set(data, forKey: "userArray")
+            
         }*/
     }
     

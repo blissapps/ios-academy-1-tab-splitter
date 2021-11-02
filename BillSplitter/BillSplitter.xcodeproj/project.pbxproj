@@ -20,8 +20,8 @@
 		07655AF92704AA58005DFF09 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07655AF82704AA58005DFF09 /* ViewController.swift */; };
 		07655AFE2704AA5E005DFF09 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 07655AFD2704AA5E005DFF09 /* Assets.xcassets */; };
 		07655B012704AA5E005DFF09 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07655AFF2704AA5E005DFF09 /* LaunchScreen.storyboard */; };
-		07655B0C2704AA5F005DFF09 /* Bliss_ex1Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07655B0B2704AA5F005DFF09 /* Bliss_ex1Tests.swift */; };
-		07655B172704AA5F005DFF09 /* Bliss_ex1UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07655B162704AA5F005DFF09 /* Bliss_ex1UITests.swift */; };
+		07655B0C2704AA5F005DFF09 /* BilllSplitterAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07655B0B2704AA5F005DFF09 /* BilllSplitterAppTests.swift */; };
+		07655B172704AA5F005DFF09 /* BillSplitterAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07655B162704AA5F005DFF09 /* BillSplitterAppUITests.swift */; };
 		07655B282704C90F005DFF09 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07655B272704C90F005DFF09 /* SecondViewController.swift */; };
 		0765CA072705E18F000B4E44 /* CoordinatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0765CA062705E18F000B4E44 /* CoordinatorProtocol.swift */; };
 		0765CA092705F92C000B4E44 /* VCCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0765CA082705F92C000B4E44 /* VCCoordinator.swift */; };
@@ -34,6 +34,9 @@
 		D67C8CF155B8DA993B08F76E /* Pods_BillSplitterApp_BillSplitterAppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 628692AA7F83D87AF9FD4CE6 /* Pods_BillSplitterApp_BillSplitterAppUITests.framework */; };
 		E249DC29270DB9480054CCC7 /* DecimalParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = E249DC28270DB9480054CCC7 /* DecimalParser.swift */; };
 		E249DC33270DBAF60054CCC7 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E249DC35270DBAF60054CCC7 /* Localizable.strings */; };
+		E28C33412731A8FA0086F1DE /* BillEnginePersistenceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28C33402731A8FA0086F1DE /* BillEnginePersistenceProtocol.swift */; };
+		E28C33432731A91D0086F1DE /* UserDefaultsBillEnginePersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28C33422731A91D0086F1DE /* UserDefaultsBillEnginePersistence.swift */; };
+		E28C33452731A93C0086F1DE /* DiskBillEnginePersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28C33442731A93C0086F1DE /* DiskBillEnginePersistence.swift */; };
 		E2CFB04327316AAF00C53168 /* BillSplitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2CFB03B27316AAF00C53168 /* BillSplitter.framework */; };
 		E2CFB04A27316AAF00C53168 /* BillSplitterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2CFB04927316AAF00C53168 /* BillSplitterTests.swift */; };
 		E2CFB04B27316AAF00C53168 /* BillSplitter.h in Headers */ = {isa = PBXBuildFile; fileRef = E2CFB03D27316AAF00C53168 /* BillSplitter.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -152,10 +155,10 @@
 		07655B002704AA5E005DFF09 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		07655B022704AA5E005DFF09 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		07655B072704AA5F005DFF09 /* BillSplitterAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BillSplitterAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		07655B0B2704AA5F005DFF09 /* Bliss_ex1Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bliss_ex1Tests.swift; sourceTree = "<group>"; };
+		07655B0B2704AA5F005DFF09 /* BilllSplitterAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BilllSplitterAppTests.swift; sourceTree = "<group>"; };
 		07655B0D2704AA5F005DFF09 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		07655B122704AA5F005DFF09 /* BillSplitterAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BillSplitterAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		07655B162704AA5F005DFF09 /* Bliss_ex1UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bliss_ex1UITests.swift; sourceTree = "<group>"; };
+		07655B162704AA5F005DFF09 /* BillSplitterAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillSplitterAppUITests.swift; sourceTree = "<group>"; };
 		07655B182704AA5F005DFF09 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		07655B272704C90F005DFF09 /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
 		0765C9FC2705B794000B4E44 /* BillItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillItem.swift; sourceTree = "<group>"; };
@@ -183,6 +186,9 @@
 		E249DC28270DB9480054CCC7 /* DecimalParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecimalParser.swift; sourceTree = "<group>"; };
 		E249DC34270DBAF60054CCC7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		E249DC39270DBB3D0054CCC7 /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-PT"; path = "pt-PT.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		E28C33402731A8FA0086F1DE /* BillEnginePersistenceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillEnginePersistenceProtocol.swift; sourceTree = "<group>"; };
+		E28C33422731A91D0086F1DE /* UserDefaultsBillEnginePersistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsBillEnginePersistence.swift; sourceTree = "<group>"; };
+		E28C33442731A93C0086F1DE /* DiskBillEnginePersistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiskBillEnginePersistence.swift; sourceTree = "<group>"; };
 		E2CFB03B27316AAF00C53168 /* BillSplitter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BillSplitter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2CFB03D27316AAF00C53168 /* BillSplitter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BillSplitter.h; sourceTree = "<group>"; };
 		E2CFB04227316AAF00C53168 /* BillSplitterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BillSplitterTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -327,6 +333,7 @@
 		07655AF32704AA58005DFF09 /* BillSplitterApp */ = {
 			isa = PBXGroup;
 			children = (
+				E28C333F2731A8DA0086F1DE /* Persistence */,
 				E249DC2D270DBADB0054CCC7 /* Localizables */,
 				07655AF42704AA58005DFF09 /* AppDelegate.swift */,
 				07D40B8927071788000B88A2 /* Helpers */,
@@ -343,7 +350,7 @@
 		07655B0A2704AA5F005DFF09 /* BillSplitterAppTests */ = {
 			isa = PBXGroup;
 			children = (
-				07655B0B2704AA5F005DFF09 /* Bliss_ex1Tests.swift */,
+				07655B0B2704AA5F005DFF09 /* BilllSplitterAppTests.swift */,
 				07655B0D2704AA5F005DFF09 /* Info.plist */,
 			);
 			path = BillSplitterAppTests;
@@ -352,7 +359,7 @@
 		07655B152704AA5F005DFF09 /* BillSplitterAppUITests */ = {
 			isa = PBXGroup;
 			children = (
-				07655B162704AA5F005DFF09 /* Bliss_ex1UITests.swift */,
+				07655B162704AA5F005DFF09 /* BillSplitterAppUITests.swift */,
 				07655B182704AA5F005DFF09 /* Info.plist */,
 			);
 			path = BillSplitterAppUITests;
@@ -448,6 +455,16 @@
 				E249DC35270DBAF60054CCC7 /* Localizable.strings */,
 			);
 			path = Localizables;
+			sourceTree = "<group>";
+		};
+		E28C333F2731A8DA0086F1DE /* Persistence */ = {
+			isa = PBXGroup;
+			children = (
+				E28C33402731A8FA0086F1DE /* BillEnginePersistenceProtocol.swift */,
+				E28C33422731A91D0086F1DE /* UserDefaultsBillEnginePersistence.swift */,
+				E28C33442731A93C0086F1DE /* DiskBillEnginePersistence.swift */,
+			);
+			path = Persistence;
 			sourceTree = "<group>";
 		};
 		E2CFB03C27316AAF00C53168 /* BillSplitter */ = {
@@ -916,17 +933,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				0730DE20270F01A000B796C3 /* Currency.swift in Sources */,
+				E28C33452731A93C0086F1DE /* DiskBillEnginePersistence.swift in Sources */,
 				07D40B8C2707179D000B88A2 /* Double+Extensions.swift in Sources */,
 				07655B282704C90F005DFF09 /* SecondViewController.swift in Sources */,
 				07E3DAE5272300DE007D6CFB /* LoadingViewController.swift in Sources */,
 				07655AF92704AA58005DFF09 /* ViewController.swift in Sources */,
 				E2D7EC472710624E0039C7F8 /* AmountTextField.swift in Sources */,
 				5FF70D19272C4305000C531F /* FeatureFlags.swift in Sources */,
+				E28C33412731A8FA0086F1DE /* BillEnginePersistenceProtocol.swift in Sources */,
 				0765CA072705E18F000B4E44 /* CoordinatorProtocol.swift in Sources */,
 				E249DC29270DB9480054CCC7 /* DecimalParser.swift in Sources */,
 				0765CA092705F92C000B4E44 /* VCCoordinator.swift in Sources */,
 				075392162710A02C001803E1 /* CurrencyPickerView.swift in Sources */,
 				07655AF52704AA58005DFF09 /* AppDelegate.swift in Sources */,
+				E28C33432731A91D0086F1DE /* UserDefaultsBillEnginePersistence.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -934,7 +954,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				07655B0C2704AA5F005DFF09 /* Bliss_ex1Tests.swift in Sources */,
+				07655B0C2704AA5F005DFF09 /* BilllSplitterAppTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -942,7 +962,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				07655B172704AA5F005DFF09 /* Bliss_ex1UITests.swift in Sources */,
+				07655B172704AA5F005DFF09 /* BillSplitterAppUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

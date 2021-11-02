@@ -17,6 +17,7 @@ final class VCCoordinator: CoordinatorProtocol {
     var delegate: CoordinatorDelegate?
     var selectedUser: BillItem?
     var selectedOption: OperationOption?
+    var persistence: BillEnginePersistenceProtocol?
     
     var billAmount: AmountValue {
         billEngine.billAmount
@@ -52,6 +53,7 @@ final class VCCoordinator: CoordinatorProtocol {
     }
     
     func start() {
+        setupCoordinatorPersistence()
         let vc = ViewController()
         vc.coordinator = self
         delegate = vc
@@ -89,5 +91,21 @@ final class VCCoordinator: CoordinatorProtocol {
             vc.coordinator = self
             vc.changeTitleButton()
             vc.user = user
+    }
+
+    func setupCoordinatorPersistence() {
+        if FeatureFlags.shared.isUserDefaultsOn {
+            persistence = UserDefaultsBillEnginePersistence()
+        } else {
+            persistence = DiskBillEnginePersistence()
+        }
+        if let billAmount = persistence?.savedBillAmount() {
+            billEngine.billAmount = billAmount
+        }
+        if let users = persistence?.savedUsers() {
+            billEngine.users = users
+        }
+        billEngine.usersDidChange = persistence?.updateUsers
+        billEngine.billAmountDidChange = persistence?.updateBillAmount
     }
 }

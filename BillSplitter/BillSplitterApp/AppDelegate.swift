@@ -6,6 +6,10 @@
 //
 
 import UIKit
+//
+import AmountValue
+import BillSplitter
+
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
     let window = UIWindow(frame: UIScreen.main.bounds)
@@ -22,9 +26,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         window.rootViewController = navigation
         window.makeKeyAndVisible()
-                
+
         return true
     }
 
 }
-
