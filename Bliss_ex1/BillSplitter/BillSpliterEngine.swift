@@ -61,8 +61,11 @@ public class BillSplitterEngine {
     public var restAmount: AmountValue = BillSplitterEngine.initialAmount
 
     public var usersDidChange: (([BillItem]) -> Void)?
-    public var users: [BillItem] = [] {
-        didSet {
+    private var _users: [BillItem] = []
+    public var users: [BillItem] {
+        get { _users }
+        set {
+            _users = newValue
             recalculate()
             usersDidChange?(users)
         }
@@ -85,7 +88,7 @@ public class BillSplitterEngine {
 
     //MARK: - Private computed vars
     private var changedUsers: [BillItem] {
-        users.filter({ $0.changedUser == true })
+        _users.filter({ $0.changedUser == true })
     }
 
     //MARK: - Public methods
@@ -94,7 +97,7 @@ public class BillSplitterEngine {
         billAmount = BillSplitterEngine.initialAmount
     }
      
-    public func saveUser(_ user: BillItem) {
+    /*public func saveUser(_ user: BillItem) {
         addUser(user)
         recalculate()
     }
@@ -105,34 +108,47 @@ public class BillSplitterEngine {
             return
         }
         users.replace(id: user.id, user: user)
-    }
+    }*/
 
     //MARK: - Private methods
     private func recalculate() {
-        
-        var changedValue: Decimal = 0
-        var valueAmount: Decimal = 0
+        let zeroAmount = AmountValue(value: 0, currencyCode: billAmount.currencyCode)
 
-        changedUsers.forEach { changedValue += ($0.amount?.value ?? 0) }
+        do {
+            var valueAmount = zeroAmount
+            var divisionRemainderAmount = zeroAmount
 
-        let numberOfUnchangedUser = Decimal(users.count - changedUsers.count)
-        
-        if (billAmount.value - changedValue) < 0 {
-            valueAmount = 0
-        } else {
-            valueAmount = (billAmount.value - changedValue) / numberOfUnchangedUser
-        }
-        
-        for (index, user) in users.enumerated() {
-            if changedUsers.contains(user) {
-                users[index].amount?.value = valueAmount
+            var changedValue = try changedUsers
+                .compactMap { $0.amount }
+                .reduce(zeroAmount, { (previous, current) -> AmountValue in try previous + current })
+            let numberOfUnchangedUser = _users.count - changedUsers.count
+
+            if (try billAmount - changedValue) < zeroAmount {
+                valueAmount = zeroAmount
+            } else {
+                (valueAmount, divisionRemainderAmount) = try (billAmount - changedValue) / numberOfUnchangedUser
             }
+
+            for (index, user) in _users.enumerated() {
+                if !changedUsers.contains(user) {
+                    let currencyCode = users[index].amount?.currencyCode ?? billAmount.currencyCode
+                    _users[index].amount = try valueAmount >>> currencyCode
+                }
+            }
+
+            let allocatedAmount = try _users
+                .compactMap { $0.amount }
+                .reduce(zeroAmount, { try $0 + $1 })
+
+            restAmount = try billAmount - allocatedAmount
+        } catch {
+            #if DEBUG
+            fatalError("\(error)")
+            #else
+            //qlq outra coisa que nao crasha
+            #endif
         }
 
         //update remainder
-        let zeroAmount = AmountValue(value: 0, currencyCode: billAmount.currencyCode)
-        var rest: AmountValue = zeroAmount
-        users.forEach{ rest = (try? rest + ($0.amount ?? zeroAmount)) ?? zeroAmount }
-        restAmount = (try? billAmount - rest) ?? zeroAmount
     }
 }

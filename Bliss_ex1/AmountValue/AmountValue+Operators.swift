@@ -119,6 +119,21 @@ extension AmountValue {
             currencyCode: lhs.currencyCode
         )
     }
+
+    public var symmetric: AmountValue {
+        AmountValue(value: -value, currencyCode: currencyCode)
+    }
+}
+
+extension AmountValue: Comparable {
+    public static func < (lhs: AmountValue, rhs: AmountValue) -> Bool {
+        do {
+            let rhsInLhsCurrencyCode = try rhs >>> lhs.currencyCode
+            return lhs.value < rhsInLhsCurrencyCode.value
+        } catch {
+            fatalError("\(error)")
+        }
+    }
 }
 
 extension AmountValue: CustomDebugStringConvertible {
