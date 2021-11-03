@@ -43,7 +43,6 @@ class BillSplitterAppUITests: XCTestCase {
         let toolbar = app.toolbars["CurrencyPickerViewToolbar"]
         XCTAssertTrue(toolbar.waitForExistence(timeout: 10))
         toolbar.buttons["Done"].tap()
-
     }
     
     func testTapResetButton() throws {
@@ -68,9 +67,9 @@ class BillSplitterAppUITests: XCTestCase {
         XCTAssertTrue(toolbar.waitForExistence(timeout: 10))
         toolbar.buttons["Done"].tap()
         
-        let restartButton = app.buttons["restartButton"]
-        XCTAssertTrue(restartButton.waitForExistence(timeout: 10))
-        restartButton.tap()
+        let deleteButton = XCUIApplication().navigationBars["Tab Splitter"].buttons["Delete"]
+        XCTAssertTrue(deleteButton.waitForExistence(timeout: 10))
+        deleteButton.tap()
     }
     
     func testTapAddButton() throws {
@@ -85,14 +84,18 @@ class BillSplitterAppUITests: XCTestCase {
         XCTAssertTrue(addButton.waitForExistence(timeout: 10))
         addButton.tap()
         
-        let nameTextField = app.buttons["svNameTextField"]
-        XCTAssertTrue(nameTextField.waitForExistence(timeout: 10))
+        let nameTextField = app.textFields["svNameTextField"]
+        nameTextField.tap()
         nameTextField.typeText("Test")
         XCTAssertTrue(nameTextField.waitForExistence(timeout: 10))
 
-        let totalAmountTextField = app.textFields["svValueTextField"]
-        XCTAssertTrue(totalAmountTextField.waitForExistence(timeout: 10))
-        let currencyButton = totalAmountTextField.buttons["CurrencyButton"]
+        let valueTextField = app.textFields["svValueTextField"]
+        XCTAssertTrue(valueTextField.waitForExistence(timeout: 10))
+        valueTextField.tap()
+        valueTextField.typeText("12345")
+        XCTAssertTrue(nameTextField.waitForExistence(timeout: 10))
+        
+        let currencyButton = valueTextField.buttons["CurrencyButton"]
         XCTAssertTrue(currencyButton.waitForExistence(timeout: 10))
         currencyButton.tap()
 
@@ -108,5 +111,4 @@ class BillSplitterAppUITests: XCTestCase {
         XCTAssertTrue(saveOrAdd.waitForExistence(timeout: 10))
         saveOrAdd.tap()
     }
-    
 }

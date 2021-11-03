@@ -93,7 +93,7 @@ class ViewController: UIViewController {
         addButton.accessibilityIdentifier = "addButton"
 
         restartButton.addTarget(self, action: #selector(self.restartButtonTouchUpInside), for: .touchUpInside)
-        restartButton.accessibilityIdentifier = "restartButton"
+        restartButton.accessibilityIdentifier = "RestartButton"
 
         
         tableView.snp.makeConstraints { make in
