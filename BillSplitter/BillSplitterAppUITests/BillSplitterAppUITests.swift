@@ -45,4 +45,68 @@ class BillSplitterAppUITests: XCTestCase {
         toolbar.buttons["Done"].tap()
 
     }
+    
+    func testTapResetButton() throws {
+        // UI tests must launch the application that they test.
+        let app = XCUIApplication()
+        app.launch()
+
+        // Use recording to get started writing UI tests.
+        // Use XCTAssert and related functions to verify your tests produce the correct results.
+
+        let totalAmountTextField = app.textFields["TotalAmountTextField"]
+        XCTAssertTrue(totalAmountTextField.waitForExistence(timeout: 10))
+        let currencyButton = totalAmountTextField.buttons["CurrencyButton"]
+        XCTAssertTrue(currencyButton.waitForExistence(timeout: 10))
+        currencyButton.tap()
+
+        let pickerWheel = app.pickers["CurrencyPickerView"]
+
+        XCTAssertTrue(pickerWheel.waitForExistence(timeout: 10))
+        pickerWheel.pickerWheels.firstMatch.swipeUp()
+        let toolbar = app.toolbars["CurrencyPickerViewToolbar"]
+        XCTAssertTrue(toolbar.waitForExistence(timeout: 10))
+        toolbar.buttons["Done"].tap()
+        
+        let restartButton = app.buttons["restartButton"]
+        XCTAssertTrue(restartButton.waitForExistence(timeout: 10))
+        restartButton.tap()
+    }
+    
+    func testTapAddButton() throws {
+        // UI tests must launch the application that they test.
+        let app = XCUIApplication()
+        app.launch()
+
+        // Use recording to get started writing UI tests.
+        // Use XCTAssert and related functions to verify your tests produce the correct results.
+
+        let addButton = app.buttons["addButton"]
+        XCTAssertTrue(addButton.waitForExistence(timeout: 10))
+        addButton.tap()
+        
+        let nameTextField = app.buttons["svNameTextField"]
+        XCTAssertTrue(nameTextField.waitForExistence(timeout: 10))
+        nameTextField.typeText("Test")
+        XCTAssertTrue(nameTextField.waitForExistence(timeout: 10))
+
+        let totalAmountTextField = app.textFields["svValueTextField"]
+        XCTAssertTrue(totalAmountTextField.waitForExistence(timeout: 10))
+        let currencyButton = totalAmountTextField.buttons["CurrencyButton"]
+        XCTAssertTrue(currencyButton.waitForExistence(timeout: 10))
+        currencyButton.tap()
+
+        let pickerWheel = app.pickers["CurrencyPickerView"]
+
+        XCTAssertTrue(pickerWheel.waitForExistence(timeout: 10))
+        pickerWheel.pickerWheels.firstMatch.swipeUp()
+        let toolbar = app.toolbars["CurrencyPickerViewToolbar"]
+        XCTAssertTrue(toolbar.waitForExistence(timeout: 10))
+        toolbar.buttons["Done"].tap()
+        
+        let saveOrAdd = app.buttons["saveOrAdd"]
+        XCTAssertTrue(saveOrAdd.waitForExistence(timeout: 10))
+        saveOrAdd.tap()
+    }
+    
 }

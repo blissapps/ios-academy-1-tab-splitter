@@ -78,6 +78,10 @@ class SecondViewController: UIViewController {
         vStackView.addArrangedSubview(valueTextField)
         
         valueTextField.coordinator = coordinator
+        
+        valueTextField.accessibilityIdentifier = "svValueTextField"
+        nameTextField.accessibilityIdentifier = "svNameTextField"
+        saveOrAdd.accessibilityIdentifier = "saveOrAdd"
 
         nameTextField.delegate = self
         

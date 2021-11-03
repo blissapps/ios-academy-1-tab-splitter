@@ -90,7 +90,11 @@ class ViewController: UIViewController {
         vStackView.addArrangedSubview(totalErrorLabel)
         
         addButton.addTarget(self, action: #selector(self.addButtonTouchUpInside), for: .touchUpInside)
+        addButton.accessibilityIdentifier = "addButton"
+
         restartButton.addTarget(self, action: #selector(self.restartButtonTouchUpInside), for: .touchUpInside)
+        restartButton.accessibilityIdentifier = "restartButton"
+
         
         tableView.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
